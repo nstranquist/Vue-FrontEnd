@@ -10,7 +10,8 @@
         <label for="military">Parent Military Experience</label>
 <!-- <input type="text" name="name" placeholder="Please enter first and last name"> -->
         <!-- should this be text or select -->
-<select id="military">
+<select id="military" v-model="military">
+    <option disabled value="" >Please select one</option>
     <option value="one">example #1</option>
     <option value="two">example #2</option>
     <option value="three">example #3</option>
@@ -19,7 +20,7 @@
         <label for="occupation">Parent Occupation</label>
     <input type="text" id="occupation"  v-model="occupation">
 
-    <button @click="submitParentInfo" class="button">Submit</button>
+    <button @click="setParentInfo" class="button">Submit</button>
 
     </div>
 </template>
@@ -30,15 +31,17 @@
             return{
                 memberships: '',
                 employer: '',
-                occupation: ''
+                occupation: '',
+                military:''
             }
         },
         methods: {
-            submitParentInfo() {
-                //should submit to server
+            setParentInfo() {
+                                  // set data
                 console.log('memberships:' + this.memberships);
                 console.log('employer: ' + this.employer);
-                console.log('occupation: ' + this.occupation)
+                console.log('occupation: ' + this.occupation);
+                 console.log('military: ' + this.military);
             }
         }
     }

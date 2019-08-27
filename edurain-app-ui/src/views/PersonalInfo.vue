@@ -88,7 +88,7 @@
             </select>
 
 
-    <button @click="submitPersonalInfo" class="button">Submit</button>
+    <button @click="setPersonalInfo" class="button">Submit</button>
     </div>
 </template>
 
@@ -109,8 +109,9 @@
             }
         },
             methods: {
-                submitPersonalInfo() {
-                    //submit to server
+                setPersonalInfo() {
+                                                      // set data
+
                     console.log('picked: ' + this.picked);
                     console.log('birthday: ' + this.birthday)
                     console.log('citizensihip: '+ this.citizensihip)

@@ -1,12 +1,12 @@
 <template>
     <div class="form">
-    <h1 class="title-heading"> Login</h1>
+    <h1 class="title-heading"> Sign in</h1>
     <hr>
     <label for="email" >Email</label>
     <input type="text" id="email" v-model="email">
     <label for="password">Password</label>
     <input type="password" id="password" v-model="password">
-        <button @click="login" class="button">Login</button>
+        <button @click="login" class="button">sign in</button>
 
     </div>
 </template>
@@ -21,7 +21,7 @@
         },
         methods:{
             login() {
-                // should submit to server
+                 // set data
                 console.log('email: ' + this.email);
                 console.log('password: ' + this.password);
             }
