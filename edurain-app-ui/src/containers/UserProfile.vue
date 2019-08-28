@@ -1,12 +1,17 @@
 <template>
 <div>
-    <!-- <edurain-student-activities></edurain-student-activities> -->
-    <!-- <edurain-personal-info></edurain-personal-info> -->
-        <!-- <eedurain-sign-in></edurain-sign-in> -->
-     <edurain-sign-up></edurain-sign-up>
-    <!-- <edurain-account-info></edurain-account-info> -->
-    <!-- <edurain-parent-info></edurain-parent-info> -->
-      <!-- <edurain-education></edurain-education> -->
+  <p>These buttons are not permanent unless this flow is better than having "Next" and "Go Back" buttons</p>
+  <button @click="selectParentInfo">Parent Info</button>
+  <button @click=" selectPersonalInfo">Personal Info</button>
+  <button @click=" selectSignIn">signIn</button>
+  <button @click=" selectEducation">education</button>
+  <button @click=" selectActivities">activities</button>
+  <button @click=" selectAccountInfo">accountInfo</button>
+  <button @click=" selectSignUp">signUp</button>
+   <keep-alive>
+      <component :is="selectedComponent">
+      </component>
+      </keep-alive>
 </div>
 
 </template>
@@ -21,18 +26,51 @@
     import StudentActivities from '../views/StudentActivities.vue'
 
     export default {
+       data() {
+                return{
+
+                }
+           },
         components:{
-            'edurain-sign-in': SignIn,
-            'edurain-sign-up': SignUp,            'edurain-parent-info':ParentInfo,
-            'edurain-personal-info':PersonalInfo,
-            'edurain-education':Education,
-            'edurain-student-activities':StudentActivities,
-            'edurain-account-info':AccountInfo
+            signIn: SignIn,
+            signUp: SignUp,
+            parentInfo: ParentInfo,
+            personalInfo: PersonalInfo,
+            education: Education,
+            activities: StudentActivities,
+            accountInfo: AccountInfo
+        },
+        computed: {
+          selectedComponent(){
+            return this.$store.getters.selectComponent;
+          }
           },
-        data() {
-                return{}
-           }
-    }
+          methods: {
+         selectParentInfo(){
+            return this.$store.commit('switchComponent', 'parentInfo');
+          },
+          selectPersonalInfo(){
+            return this.$store.commit('switchComponent', 'personalInfo');
+          },
+            selectSignIn(){
+            return this.$store.commit('switchComponent', 'signIn');
+          },
+          selectEducation(){
+            return this.$store.commit('switchComponent', 'education');
+          },
+            selectActivities(){
+            return this.$store.commit('switchComponent', 'activities');
+          },
+          selectSignUp(){
+            return this.$store.commit('switchComponent', 'signUp');
+          },
+           selectAccountInfo(){
+            return this.$store.commit('switchComponent', 'accountInfo');
+          }
+          }
+        }
+
+
 </script>
 
 

@@ -108,22 +108,29 @@
 
             }
         },
+        computed: {
+          selectedComponent(){
+            return this.$store.getters.selectComponent;
+          }
+          },
             methods: {
-                setPersonalInfo() {
-                                                      // set data
+            setPersonalInfo() {
+                 // set data
 
-                    console.log('picked: ' + this.picked);
-                    console.log('birthday: ' + this.birthday)
-                    console.log('citizensihip: '+ this.citizensihip)
-                     console.log('heritage: '+ this.heritage)
-                      console.log('religion: '+ this.religion)
-                       console.log('majors: '+ this.majors)
-                        console.log('career: '+ this.career)
-                         console.log('honors: '+ this.honors)
-                          console.log('education: '+ this.education)
-
-                }
-
+                console.log('picked: ' + this.picked);
+                console.log('birthday: ' + this.birthday)
+                console.log('citizensihip: '+ this.citizensihip)
+                console.log('heritage: '+ this.heritage)
+                console.log('religion: '+ this.religion)
+                console.log('majors: '+ this.majors)
+                console.log('career: '+ this.career)
+                console.log('honors: '+ this.honors)
+                console.log('education: '+ this.education)
+                this.selectEducation();
+                },
+                  selectEducation(){
+                      return this.$store.commit('switchComponent', 'education');
+          },
         }
     }
 

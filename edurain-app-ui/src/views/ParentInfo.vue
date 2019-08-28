@@ -21,6 +21,7 @@
     <input type="text" id="occupation"  v-model="occupation">
 
     <button @click="setParentInfo" class="button">Submit</button>
+      <button @click="goBack" class="button">Go Back</button>
 
     </div>
 </template>
@@ -34,7 +35,11 @@
                 occupation: '',
                 military:''
             }
-        },
+        },        computed: {
+          selectedComponent(){
+            return this.$store.getters.selectComponent;
+          }
+          },
         methods: {
             setParentInfo() {
                                   // set data
@@ -42,7 +47,11 @@
                 console.log('employer: ' + this.employer);
                 console.log('occupation: ' + this.occupation);
                  console.log('military: ' + this.military);
-            }
+                 // should switch to displayUser profile after pressing submit
+            },
+               goBack(){
+            return this.$store.commit('switchComponent', 'activities');
+          },
         }
     }
 </script>
