@@ -1,6 +1,6 @@
 <template>
 <div>
-  <p>These buttons are not permanent unless this flow is better than having "Next" and "Go Back" buttons</p>
+  
   <button @click="selectParentInfo">Parent Info</button>
   <button @click=" selectPersonalInfo">Personal Info</button>
   <button @click=" selectSignIn">signIn</button>

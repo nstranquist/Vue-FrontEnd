@@ -28,10 +28,10 @@
         <input type="text" id="perform"   v-model ="perform">
         <label for="employer">Current/Previous Employer</label>
         <input type="text" id="employer"  v-model ="employer">
-    <button @click="submitStudentActivities" class="button">Submit</button>
-       <button @click="goBack" class="button">Go Back</button>
+    <button @click="submitStudentActivities" class="button">Save</button>
+
     </div>
-    
+
 </template>
 
 <script>
@@ -55,14 +55,7 @@
                 console.log('sports: ' + this.sports);
                 console.log('perform: ' + this.perform);
                 console.log('employer: ' + this.employer);
-                this.selectParentInfo();
             },
-             selectParentInfo(){
-            return this.$store.commit('switchComponent', 'parentInfo');
-          },
-          goBack(){
-               return this.$store.commit('switchComponent', 'education');
-          }
 
         }
     }

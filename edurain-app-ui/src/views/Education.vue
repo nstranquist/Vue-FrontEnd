@@ -41,9 +41,7 @@
     <option value="three">example #3</option>
     <option value="four">example #4</option>
 </select>
-    <button @click="setEducation" class="button">Submit</button>
-     <button @click="goBack" class="button">Go Back</button>
-
+    <button @click="setEducation" class="button">Save</button>
 
     </div>
 </template>
@@ -64,9 +62,7 @@
             }
         },
          computed: {
-          selectedComponent(){
-            return this.$store.getters.selectComponent;
-          }
+
           },
         methods: {
             setEducation(){
@@ -79,15 +75,8 @@
                 console.log('enrolled' + this.enrolled)
                 console.log('transfer' + this.transfer)
                 console.log('college' + this.college)
-                this.selectActivities();
             },
-            selectActivities(){
-            return this.$store.commit('switchComponent', 'activities');
-          },
-                goBack(){
-               return this.$store.commit('switchComponent', 'personalInfo');
-          }
-        }
+       }
     }
 </script>
 

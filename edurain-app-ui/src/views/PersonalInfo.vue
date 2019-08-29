@@ -88,7 +88,7 @@
             </select>
 
 
-    <button @click="setPersonalInfo" class="button">Submit</button>
+    <button @click="setPersonalInfo" class="button">Save</button>
     </div>
 </template>
 
@@ -109,9 +109,7 @@
             }
         },
         computed: {
-          selectedComponent(){
-            return this.$store.getters.selectComponent;
-          }
+         
           },
             methods: {
             setPersonalInfo() {
@@ -126,11 +124,8 @@
                 console.log('career: '+ this.career)
                 console.log('honors: '+ this.honors)
                 console.log('education: '+ this.education)
-                this.selectEducation();
                 },
-                  selectEducation(){
-                      return this.$store.commit('switchComponent', 'education');
-          },
+
         }
     }
 
