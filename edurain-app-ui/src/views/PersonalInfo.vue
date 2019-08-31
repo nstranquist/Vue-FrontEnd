@@ -1,19 +1,20 @@
 <template>
-    <div class="form">
+<div>
+    <div class="form" v-show="show">
     <h1 class="title-heading">Personal Information</h1>
     <hr>
     <label for="birthday">Birthday</label>
-        <input type="text" id="birthday" v-model ="birthday">
+        <input type="text" id="birthday" v-model ="info.birthday">
     <p>Gender</p>
-    <input type="radio" id="female" value="female" name="gender" v-model="picked">
+    <input type="radio" id="female" value="female" name="genderSelection" v-model="info.gender">
     <label for="female" class="radio-label">Female</label>
-    <input type="radio" id="male" v-model ="picked" value="male" name="gender">
+    <input type="radio" id="male" v-model ="info.gender" value="male" name="genderSelection">
     <label for="male" class="radio-label">Male</label>
 
     <label for="citizensihip">Citizenship</label>
     <!-- should this be text or  a select element -->
 
-    <select v-model="citizensihip">
+    <select v-model="info.citizensihip">
         <option disabled value="" >Please select one</option>
         <option value="one">example #1</option>
         <option value="two">example #2</option>
@@ -24,7 +25,7 @@
         <label for="disabilities">Disabilites</label>
     <!-- <input type="text" name="name" placeholder="Please enter first and last name"><br> -->
 <!-- should this be text or  a select element -->
-    <select v-model="citizensihip">
+    <select v-model="info.disabilities">
         <option disabled value="" >Please select one</option>
         <option value="one">example #1</option>
         <option value="two">example #2</option>
@@ -33,7 +34,7 @@
     </select>
         <label for="heritage">Heritage</label>
     <!-- <input type="text" name="name" placeholder="Please enter first and last name"><br> -->
-    <select v-model="heritage">
+    <select v-model="info.heritage">
          <option disabled value="" >Please select one</option>
         <option value="one">example #1</option>
         <option value="two">example #2</option>
@@ -41,7 +42,7 @@
         <option value="four">example #4</option>
     </select>
         <label for="religion">Religion</label>
-        <select v-model="religion">
+        <select v-model="info.religion">
              <option disabled value="" >Please select one</option>
             <option value="one">example #1</option>
             <option value="two">example #2</option>
@@ -54,7 +55,7 @@
         <label for="majors">Possible Majors</label>
     <!-- <input type="text" name="name" placeholder="Please enter first and last name"><br> -->
 <!-- should this be text or  a select element -->
-    <select v-model="majors">
+    <select v-model="info.majors">
          <option disabled value="" >Please select one</option>
         <option value="one">example #1</option>
         <option value="two">example #2</option>
@@ -64,7 +65,7 @@
         <label for="career">Career Objectives</label>
     <!-- <input type="text" name="name" placeholder="Please enter first and last name"><br> -->
 <!-- should this be text or  a select element -->
-    <select v-model="career">
+    <select v-model="info.career">
                 <option disabled value="" >Please select one</option>
 
         <option value="one">example #1</option>
@@ -73,13 +74,13 @@
         <option value="four">example #4</option>
     </select>
         <label for="honors">Academic Honors</label>
-    <!-- <input type="text" name="name" placeholder="Please enter first and last name"><br> -->
+    <input type="text" id="honors" v-model ="info.honors"><br>
 <!-- should this be text or  a select element -->
 
         <label for="education">Educational Experiences</label>
             <!-- <input type="text" name="name" placeholder="Please enter first and last name"><br> -->
 <!-- should this be text or  a select element -->
-            <select v-model="education">
+            <select v-model="info.education">
                 <option disabled value="" >Please select one</option>
                 <option value="one">example #1</option>
                 <option value="two">example #2</option>
@@ -87,16 +88,19 @@
                 <option value="four">example #4</option>
             </select>
 
-
     <button @click="setPersonalInfo" class="button">Save</button>
     </div>
+    <p v-show="!show">{{personalInfo.birthday}}</p>
+     <button @click="edit" v-show="!show" class="button">Edit</button>
+</div>
 </template>
 
 <script>
     export default {
         data() {
             return{
-                picked: '',
+                info: {
+                gender: '',
                 birthday: '',
                 citizensihip: '',
                 heritage: '',
@@ -104,28 +108,25 @@
                 majors: '',
                 career: '',
                 honors: '',
-                education: ''
-
+                education: '',
+                disabilities: ''
+                },
+                show: true,
+            personalInfo: this.$store._modules.root.state.profile.personalInfo
             }
         },
         computed: {
-         
+
           },
             methods: {
             setPersonalInfo() {
                  // set data
-
-                console.log('picked: ' + this.picked);
-                console.log('birthday: ' + this.birthday)
-                console.log('citizensihip: '+ this.citizensihip)
-                console.log('heritage: '+ this.heritage)
-                console.log('religion: '+ this.religion)
-                console.log('majors: '+ this.majors)
-                console.log('career: '+ this.career)
-                console.log('honors: '+ this.honors)
-                console.log('education: '+ this.education)
+                 this.$store.commit('updatePersonalInfo', this.info)
+                this.show = false;
                 },
-
+                edit(){
+                    this.show = true;
+                }
         }
     }
 

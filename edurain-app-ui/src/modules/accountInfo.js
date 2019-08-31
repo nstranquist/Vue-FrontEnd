@@ -1,21 +1,33 @@
-// const state = {
+const state = {
+  accountInfo: {
+    firstname: '',
+    lastnmae: '',
+    verify: '',
+    password: '',
+    email: '',
+    address: ''
+  }
+}
 
-// }
+const mutations = {
+  updateAccountInfo (state, accountInfo) {
+    Object.assign(state.accountInfo, accountInfo)
+  }
 
-// const mutations = {
-
-// }
+}
 
 // const actions = {
 
 // }
 
-// const getters = {
+const getters = {
+  getAccountInfo: state => {
+    return state.accountInfo
+  }
+}
 
-// }
-
-// export default {
-//   state,
-//   mutations,
-//   getters
-// }
+export default {
+  state,
+  mutations,
+  getters
+}

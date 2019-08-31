@@ -3,17 +3,17 @@
     <h1 class="title-heading"> Sign Up</h1>
     <hr>
     <label for="firstname" >First Name</label>
-    <input type="text" id="firstname" v-model="firstname">
+    <input type="text" id="firstname" v-model="accountInfo.firstname">
     <label for="lastnmae">Last Name</label>
-    <input type="text" id="lastnmae" v-model="lastnmae">
+    <input type="text" id="lastnmae" v-model="accountInfo.lastnmae">
         <label for="address">Address</label>
-    <input type="text" id="address" v-model="address">
+    <input type="text" id="address" v-model="accountInfo.address">
     <label for="email">Email</label>
-    <input type="text" id="email" v-model="email">
+    <input type="text" id="email" v-model="accountInfo.email">
     <label for="password">Password</label>
-    <input type="password" id="password" v-model="password">
+    <input type="password" id="password" v-model="accountInfo.password">
         <label for="verify">Verify Password</label>
-    <input type="password" id="verify" v-model="verify">
+    <input type="password" id="verify" v-model="accountInfo.verify">
       <label for="verify">Verify Password</label>
         <button @click="setUserCredentials" class="button">sign up</button>
 
@@ -24,25 +24,24 @@
     export default {
         data() {
             return{
-                firstname:'',
+                accountInfo:{
+                 firstname:'',
                 lastnmae:'',
                 verify:'',
                 password:'',
                 email:'',
                 address:''
-                                }
+                }
+             }
         },
         methods:{
              setUserCredentials(){
                                   // set data
-                console.log('firstname: ' + this.firstname);
-                console.log('lastnmae: ' + this.lastnmae);
-                console.log('verify: ' + this.verify);
-                console.log('password: ' + this.password);
-                console.log('email: ' + this.email);
-                console.log('address: ' + this.address);
-            }
+              this.$store.commit('updateAccountInfo', this.accountInfo)
+              
+               console.log(this.$store._modules.root.state.accountInformation.accountInfo )
 
+            }
         }
     }
 </script>

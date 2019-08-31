@@ -5,36 +5,40 @@
         <label for="graduationDate">High School Graduation</label>
         <!-- <input type="text" name="name" placeholder="Please enter first and last name"><br> -->
         <!-- should this be text or  a select element -->
-        <select  v-model="graduationDate">
+        <select  v-model="edu.graduationDate">
             <option disabled value="" >Please select one</option>
             <option value="one">example #1</option>
             <option value="two">example #2</option>
             <option value="three">example #3</option>
             <option value="four">example #4</option>
         </select>
+
         <label for="math">SAT Math Score:</label>
-    <input type="text" id="math" v-model="math">
+    <input type="text" id="math" v-model="edu.math">
+
     <label for="ebrw">SAT ( EBRW )</label>
-    <input type="text" name="ebrw" v-model="ebrw">
+    <input type="text" name="ebrw" v-model="edu.ebrw">
+
         <label for="written">SAT Written Score</label>
-     <input type="text" id="written"  v-model="written">
+     <input type="text" id="written"  v-model="edu.written">
+
         <label for="act">ACT Score</label>
-    <input type="text" id="act" v-model="act">
+    <input type="text" id="act" v-model="edu.act">
+
         <p>Currently Enrolled</p>
-              <input type="radio" id="yes" value="yes"  v-model="enrolled" name="enrolled" checked>
+              <input type="radio" id="yes" value="yes"  v-model="edu.enrolled" name="enrolled" checked>
             <label for="yes" class="radio-label">Yes</label>
-            <input type="radio" id="no" value="no" v-model="enrolled" name="enrolled">
+            <input type="radio" id="no" value="no" v-model="edu.enrolled" name="enrolled">
         <label for="no" class="radio-label">No</label>
+
         <p>Transfer Within A Year</p>
-    <input type="radio" id="yes" value="yes" name="transfer"  v-model="transfer" checked>
+    <input type="radio" id="yes" value="yes" name="transfer"  v-model="edu.transfer" checked>
     <label for="yes" class="radio-label">Yes</label>
-    <input type="radio" id="no" value="no" v-model="transfer"  name="transfer">
+    <input type="radio" id="no" value="no" v-model="edu.transfer"  name="transfer">
     <label for="no" class="radio-label">No</label>
 
     <label for="college">College Graduation Year</label>
-<!-- <input type="text" name="name" placeholder="Please enter first and last name"><br> -->
-<!-- should this be text or  a select element -->
-<select v-model="college">
+<select v-model="edu.college">
     <option disabled value="" >Please select one</option>
     <option value="one">example #1</option>
     <option value="two">example #2</option>
@@ -50,6 +54,7 @@
     export default {
         data() {
             return{
+               edu:{
                 graduationDate:'',
                 math:'',
                 ebrw:'',
@@ -58,6 +63,8 @@
                enrolled:'',
                transfer:'',
                college:'',
+            },
+            education:this.$store._modules.root.state.profile.education
 
             }
         },
@@ -67,14 +74,8 @@
         methods: {
             setEducation(){
                  // set data
-                console.log('graduationDate' + this.graduationDate)
-                console.log('math' + this.math)
-                console.log('act' + this.act)
-                console.log('ebrw' + this.ebrw)
-                console.log('written' + this.written)
-                console.log('enrolled' + this.enrolled)
-                console.log('transfer' + this.transfer)
-                console.log('college' + this.college)
+                 this.$store.commit('updateEducation', this.edu)
+                console.log(this.education )
             },
        }
     }

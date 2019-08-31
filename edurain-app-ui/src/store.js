@@ -8,6 +8,7 @@ import scholarships from './modules/scholarships'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  strict: true,
   modules: {
     switchComponents,
     accountInformation,
