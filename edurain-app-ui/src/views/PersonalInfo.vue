@@ -14,7 +14,7 @@
     <label for="citizensihip">Citizenship</label>
     <!-- should this be text or  a select element -->
 
-    <select v-model="info.citizensihip">
+    <select v-model="info.citizenship">
         <option disabled value="" >Please select one</option>
         <option value="one">example #1</option>
         <option value="two">example #2</option>
@@ -90,19 +90,24 @@
 
     <button @click="setPersonalInfo" class="button">Save</button>
     </div>
-    <p v-show="!show">{{personalInfo.birthday}}</p>
-     <button @click="edit" v-show="!show" class="button">Edit</button>
+    <div v-show="!show">
+        <display-personal-info></display-personal-info>
+     <button @click="edit" class="button">Edit</button>     </div>
 </div>
 </template>
 
 <script>
+  import DisplayPersonalInfo from '../views/editable/DisplayPersonalInfo.vue'
     export default {
+        components:{
+            displayPersonalInfo: DisplayPersonalInfo
+        },
         data() {
             return{
                 info: {
                 gender: '',
                 birthday: '',
-                citizensihip: '',
+                citizenship: '',
                 heritage: '',
                 religion: '',
                 majors: '',
@@ -112,7 +117,6 @@
                 disabilities: ''
                 },
                 show: true,
-            personalInfo: this.$store._modules.root.state.profile.personalInfo
             }
         },
         computed: {

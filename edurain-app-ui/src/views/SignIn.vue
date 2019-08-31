@@ -21,9 +21,7 @@
         },
         methods:{
             login() {
-                 // set data
-                console.log('email: ' + this.email);
-                console.log('password: ' + this.password);
+                 // validate user exists
             }
         }
     }

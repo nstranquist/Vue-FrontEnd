@@ -14,7 +14,7 @@
 <p>Password displayed in aterisks</p>
     Member Since:<br>
    <p>Today</p>
-    <button type="submit" class="button">Submit</button>
+    <!-- <button type="submit" class="button">Edit</button> -->
     </div>
 </template>
 

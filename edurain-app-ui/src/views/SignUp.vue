@@ -1,5 +1,6 @@
 <template>
-    <div class="form">
+<div>
+    <div class="form" v-show="show">
     <h1 class="title-heading"> Sign Up</h1>
     <hr>
     <label for="firstname" >First Name</label>
@@ -16,12 +17,21 @@
     <input type="password" id="verify" v-model="accountInfo.verify">
       <label for="verify">Verify Password</label>
         <button @click="setUserCredentials" class="button">sign up</button>
-
     </div>
+
+    <div v-show="!show">
+ <account-info></account-info>
+  <button @click="edit" class="button">Edit</button>
+     </div>
+      </div>
 </template>
 
 <script>
+    import AccountInfo from '../views/editable/AccountInfo.vue'
     export default {
+         components:{
+            accountInfo: AccountInfo
+        },
         data() {
             return{
                 accountInfo:{
@@ -31,17 +41,19 @@
                 password:'',
                 email:'',
                 address:''
-                }
+                },
+                show: true
              }
         },
         methods:{
              setUserCredentials(){
-                                  // set data
-              this.$store.commit('updateAccountInfo', this.accountInfo)
-              
-               console.log(this.$store._modules.root.state.accountInformation.accountInfo )
-
-            }
+                    // set data
+                    this.$store.commit('updateAccountInfo', this.accountInfo);
+                    this.show = false;
+            },
+               edit(){
+                    this.show = true;
+                }
         }
     }
 </script>

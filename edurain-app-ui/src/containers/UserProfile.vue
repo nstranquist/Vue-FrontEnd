@@ -1,6 +1,6 @@
 <template>
 <div>
-  
+
   <button @click="selectParentInfo">Parent Info</button>
   <button @click=" selectPersonalInfo">Personal Info</button>
   <button @click=" selectSignIn">signIn</button>
@@ -31,6 +31,7 @@
 
                 }
            },
+
         components:{
             signIn: SignIn,
             signUp: SignUp,
@@ -38,7 +39,8 @@
             personalInfo: PersonalInfo,
             education: Education,
             activities: StudentActivities,
-            accountInfo: AccountInfo
+            accountInfo: AccountInfo,
+            
         },
         computed: {
           selectedComponent(){

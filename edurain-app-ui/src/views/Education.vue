@@ -1,10 +1,10 @@
 <template>
-    <div class="form">
+<div>
+    <div class="form" v-show="show">
         <h1 class="title-heading">Education </h1>
         <hr>
         <label for="graduationDate">High School Graduation</label>
-        <!-- <input type="text" name="name" placeholder="Please enter first and last name"><br> -->
-        <!-- should this be text or  a select element -->
+
         <select  v-model="edu.graduationDate">
             <option disabled value="" >Please select one</option>
             <option value="one">example #1</option>
@@ -46,12 +46,21 @@
     <option value="four">example #4</option>
 </select>
     <button @click="setEducation" class="button">Save</button>
-
+</div>
+<div v-show="!show">
+    <display-education ></display-education>
+ <button @click="edit" class="button">Edit</button>
+</div>
     </div>
 </template>
 
 <script>
+    import DisplayEducation from '../views/editable/DisplayEducation.vue'
+
     export default {
+          components:{
+            displayEducation: DisplayEducation
+        },
         data() {
             return{
                edu:{
@@ -64,8 +73,7 @@
                transfer:'',
                college:'',
             },
-            education:this.$store._modules.root.state.profile.education
-
+                show: true
             }
         },
          computed: {
@@ -74,9 +82,12 @@
         methods: {
             setEducation(){
                  // set data
+                 this.show =false;
                  this.$store.commit('updateEducation', this.edu)
-                console.log(this.education )
             },
+               edit(){
+                    this.show = true;
+                }
        }
     }
 </script>

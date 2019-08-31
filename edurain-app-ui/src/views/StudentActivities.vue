@@ -1,5 +1,6 @@
 <template>
-    <div class="form">
+<div>
+    <div class="form" v-show="show">
         <h1 class= "title-heading">Student Activities</h1>
         <hr>
         <label for="fraternity">Fraternity</label>
@@ -29,13 +30,22 @@
         <label for="employer">Current/Previous Employer</label>
         <input type="text" id="employer"  v-model ="activities.employer">
     <button @click="submitStudentActivities" class="button">Save</button>
-
     </div>
+
+     <div v-show="!show">
+ <display-student-activities></display-student-activities>
+  <button @click="edit" class="button">Edit</button>
+     </div>
+     </div>
 
 </template>
 
 <script>
+   import DisplayStudentActivities from '../views/editable/DisplayStudentActivities.vue'
     export default {
+          components:{
+            displayStudentActivities: DisplayStudentActivities
+        },
         data() {
             return{
                 activities: {
@@ -46,15 +56,18 @@
                 perform:'',
                 employer:''
                 },
-                studentActivities: this.$store._modules.root.state.profile.studentActivities
+                show: true
             }
         },
         methods:{
              submitStudentActivities(){
-                                  // set data
-                 this.$store.commit('updateStudentActivities', this.activities)
-               console.log(this.studentActivities )
+                    // set data
+                    this.show = false
+                    this.$store.commit('updateStudentActivities', this.activities)
             },
+              edit(){
+                    this.show = true;
+                }
 
         }
     }

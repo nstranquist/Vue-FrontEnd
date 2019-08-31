@@ -2,7 +2,7 @@ const state = {
   personalInfo: {
     gender: '',
     birthday: '',
-    citizensihip: '',
+    citizenship: '',
     heritage: '',
     religion: '',
     majors: '',
