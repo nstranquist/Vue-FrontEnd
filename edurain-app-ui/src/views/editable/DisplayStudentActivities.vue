@@ -15,7 +15,7 @@
    Current/Previous Employer:<br>
    <p>{{employer}}</p>
 
-    <!-- <button type="submit" class="button">Edit</button> -->
+    <button @click="editStudentActivities" class="button">Edit</button>
     </div>
 </template>
 
@@ -37,8 +37,12 @@ import { mapState } from 'vuex';
                 perform: state => state.profile.studentActivities.perform,
                 employer: state => state.profile.studentActivities.employer,
 
-                })
-
+                }),
+          methods:{
+                 editStudentActivities(){
+                     this.$emit('editActivities', !this.show)
+                }
+         }
     }
 </script>
 

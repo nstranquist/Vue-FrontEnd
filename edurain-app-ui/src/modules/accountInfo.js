@@ -1,11 +1,12 @@
 const state = {
   accountInfo: {
     firstname: '',
-    lastnmae: '',
+    lastname: '',
     verify: '',
     password: '',
     email: '',
-    address: ''
+    address: '',
+    phone: ''
   }
 }
 

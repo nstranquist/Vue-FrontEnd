@@ -25,8 +25,7 @@
     <button @click="setParentInfo" class="button">Save</button>
     </div>
     <div v-show="!show">
-   <display-parent-info></display-parent-info>
-     <button @click="edit" class="button">Edit</button>
+   <display-parent-info :show = "show" @editParentInfo = "edit"></display-parent-info>
      </div>
 
      </div>
@@ -57,8 +56,8 @@
                     this.show = false;
                     this.$store.commit('updateParentInfo', this.info)
             },
-             edit(){
-                    this.show = true;
+            edit(updated){
+                    this.show = updated;
                 }
         }
     }

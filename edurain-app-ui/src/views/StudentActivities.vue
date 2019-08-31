@@ -33,8 +33,7 @@
     </div>
 
      <div v-show="!show">
- <display-student-activities></display-student-activities>
-  <button @click="edit" class="button">Edit</button>
+ <display-student-activities :show = "show" @editActivities = "edit"></display-student-activities>
      </div>
      </div>
 
@@ -65,8 +64,8 @@
                     this.show = false
                     this.$store.commit('updateStudentActivities', this.activities)
             },
-              edit(){
-                    this.show = true;
+              edit(updated){
+                    this.show = updated;
                 }
 
         }

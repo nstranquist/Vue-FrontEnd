@@ -11,7 +11,7 @@
     Parent Occupation:<br>
     <p>{{occupation}}</p>
 
-    <!-- <button type="submit" class="button">the other one</button> -->
+    <button @click="editParentInfo" class="button">Edit</button>
     </div>
 </template>
 
@@ -32,8 +32,11 @@
             military: (state) => state.profile.parentInfo.military,
 
          }),
-
-
+         methods:{
+                editParentInfo(){
+                     this.$emit('editParentInfo', !this.show)
+                }
+         }
     }
 </script>
 

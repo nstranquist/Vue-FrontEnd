@@ -9,9 +9,11 @@ const mutations = {
   }
 }
 
-// const actions = {
-
-// }
+const actions = {
+  selectComponent: ({ commit }, payload) => {
+    commit('switchComponent', payload)
+  }
+}
 
 const getters = {
   selectComponent: state => {
@@ -23,5 +25,6 @@ const getters = {
 export default {
   state,
   mutations,
-  getters
+  getters,
+  actions
 }

@@ -3,7 +3,7 @@
         <h1 class="title-heading">Education</h1>
         <hr>
     High School Graduation Date:<br>
-    <p>{{graduationDate}}e</p>
+    <p>{{graduationDate}}</p>
      SAT Math Score:<br>
     <p>{{math}}</p>
     SAT (EBRW):<br>
@@ -18,14 +18,14 @@
    <p>{{transfer}}</p>
     College Graduation Year:<br>
    <p>{{college}}</p>
-   <!-- //May need to use props and v-bind to toggle the appearance of this button -->
-    <!-- <button type="submit" class="button">Edit</button> -->
+    <button @click="editEducation" class="button">Edit</button>
     </div>
 </template>
 
 <script>
     import {mapState} from 'vuex'
     export default {
+        props: ['show'],
         data() {
             return{
             }
@@ -41,7 +41,12 @@
                 enrolled: state => state.profile.education.enrolled,
                 transfer: state => state.profile.education.transfer,
                 college: state => state.profile.education.college,
-        })
+        }),
+        methods:{
+            editEducation(){
+                this.$emit('editEducation', !this.show);
+            }
+        }
     }
 </script>
 

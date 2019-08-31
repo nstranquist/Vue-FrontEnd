@@ -91,8 +91,8 @@
     <button @click="setPersonalInfo" class="button">Save</button>
     </div>
     <div v-show="!show">
-        <display-personal-info></display-personal-info>
-     <button @click="edit" class="button">Edit</button>     </div>
+        <display-personal-info :show = " show" @editPersonalInfo ="edit"></display-personal-info>
+         </div>
 </div>
 </template>
 
@@ -128,8 +128,8 @@
                  this.$store.commit('updatePersonalInfo', this.info)
                 this.show = false;
                 },
-                edit(){
-                    this.show = true;
+                 edit(updated){
+                    this.show = updated;
                 }
         }
     }

@@ -4,11 +4,11 @@ import './css/form.css'
 // import router from './router'
 import store from './store'
 import './registerServiceWorker'
-import UserProfile from './containers/UserProfile.vue'
+import User from './containers/User.vue'
 
 Vue.config.productionTip = false
 
-Vue.component('edurain-user-profile', UserProfile)
+Vue.component('edurain-user-profile', User)
 
 new Vue({
 //  router,

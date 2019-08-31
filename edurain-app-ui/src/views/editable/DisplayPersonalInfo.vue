@@ -22,7 +22,7 @@
    <p>{{honors}}</p>
     Educational Experiences:<br>
    <p>{{education}}</p>
-    <!-- <button type="submit" class="button">Edit</button> -->
+    <button @click="editPersonalInfo" class="button">Edit</button>
     </div>
 </template>
 
@@ -45,7 +45,12 @@ import { mapState } from 'vuex';
                 honors:  state => state.profile.personalInfo.honors,
                 education:  state => state.profile.personalInfo.education,
                 disabilities:  state => state.profile.personalInfo.disabilities,
-        })
+        }),
+           methods:{
+                editPersonalInfo(){
+                     this.$emit('editPersonalInfo', !this.show)
+                }
+         }
     }
 </script>
 

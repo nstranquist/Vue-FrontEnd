@@ -9,19 +9,18 @@
     <input type="text" id="lastnmae" v-model="accountInfo.lastnmae">
         <label for="address">Address</label>
     <input type="text" id="address" v-model="accountInfo.address">
+       <label for="phone">Phone Number</label>
+    <input type="text" id="phone" v-model="accountInfo.phone">
     <label for="email">Email</label>
     <input type="text" id="email" v-model="accountInfo.email">
     <label for="password">Password</label>
     <input type="password" id="password" v-model="accountInfo.password">
         <label for="verify">Verify Password</label>
     <input type="password" id="verify" v-model="accountInfo.verify">
-      <label for="verify">Verify Password</label>
-        <button @click="setUserCredentials" class="button">sign up</button>
+              <button @click="setUserCredentials" class="button">sign up</button>
     </div>
-
     <div v-show="!show">
- <account-info></account-info>
-  <button @click="edit" class="button">Edit</button>
+ <account-info :show = "show" @canEdit="edit"></account-info>
      </div>
       </div>
 </template>
@@ -40,7 +39,8 @@
                 verify:'',
                 password:'',
                 email:'',
-                address:''
+                address:'',
+                phone:''
                 },
                 show: true
              }
@@ -50,9 +50,10 @@
                     // set data
                     this.$store.commit('updateAccountInfo', this.accountInfo);
                     this.show = false;
+                    console.log('setUserCredentials: ' + this.show)
             },
-               edit(){
-                    this.show = true;
+                edit(updated){
+                    this.show = updated;
                 }
         }
     }
