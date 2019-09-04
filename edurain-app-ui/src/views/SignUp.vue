@@ -15,7 +15,7 @@
     <input type="text" id="email" v-model="accountInfo.email">
     <label for="password">Password</label>
     <input type="password" id="password" v-model="accountInfo.password">
-        <label for="verify">Verify Password</label>
+        <label for="verify">Confirm Password</label>
     <input type="password" id="verify" v-model="accountInfo.verify">
               <button @click="setUserCredentials" class="button">sign up</button>
     </div>
