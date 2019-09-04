@@ -1,9 +1,5 @@
 <template>
-<div>
+  <div>
     <edurain-user-profile></edurain-user-profile>
-</div>
+  </div>
 </template>
-
-<style>
-
-</style>

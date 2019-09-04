@@ -1,0 +1,3 @@
+[ ] - Create Scholarships List View
+[ ] - Create Scholarship Detail View
+
