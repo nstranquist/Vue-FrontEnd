@@ -1,7 +1,0 @@
-{
-  "name": "edurain-app-ui",
-  "short_name": "edurain-app-ui",
-  "icons": [],
-  "start_url": "./index.html",
-  "display": "standalone"
-}
