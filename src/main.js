@@ -11,7 +11,7 @@ Vue.config.productionTip = false
 Vue.component('edurain-user-profile', User)
 
 new Vue({
-//  router,
+  //  router,
   store,
   render: h => h(App)
 }).$mount('#app')

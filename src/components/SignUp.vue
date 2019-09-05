@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import AccountInfo from "../views/editable/AccountInfo.vue";
+import AccountInfo from "../components/profile/editable/AccountInfo.vue";
 export default {
   components: {
     accountInfo: AccountInfo

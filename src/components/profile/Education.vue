@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import DisplayEducation from "../views/editable/DisplayEducation.vue";
+import DisplayEducation from "./editable/DisplayEducation.vue";
 
 export default {
   components: {

@@ -103,8 +103,8 @@
 </template>
 
 <script>
-import DisplayPersonalInfo from "../views/editable/DisplayPersonalInfo.vue";
-import * as data from "../data";
+import DisplayPersonalInfo from "./editable/DisplayPersonalInfo.vue";
+import * as data from "../../data";
 
 export default {
   components: {

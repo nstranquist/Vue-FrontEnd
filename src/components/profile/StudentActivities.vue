@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import DisplayStudentActivities from "../views/editable/DisplayStudentActivities.vue";
+import DisplayStudentActivities from "./editable/DisplayStudentActivities.vue";
 export default {
   components: {
     displayStudentActivities: DisplayStudentActivities

@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import DisplayParentInfo from "../views/editable/DisplayParentInfo.vue";
+import DisplayParentInfo from "./editable/DisplayParentInfo.vue";
 export default {
   components: {
     displayParentInfo: DisplayParentInfo

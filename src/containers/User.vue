@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!--Replace these with custom UI-->
     <button @click="selectComponent('parentInfo')">Parent Info</button>
     <button @click="selectComponent('personalInfo')">Personal Info</button>
     <button @click="selectComponent('signIn')">signIn</button>
@@ -7,6 +8,7 @@
     <button @click="selectComponent('activities')">activities</button>
     <button @click="selectComponent('accountInfo')">accountInfo</button>
     <button @click="selectComponent('signUp')">signUp</button>
+    <!---->
     <keep-alive>
       <component :is="selectedComponent"></component>
     </keep-alive>
@@ -15,15 +17,15 @@
 
 
 <script>
-// components
-import PersonalInfo from "../views/PersonalInfo.vue";
-import AccountInfo from "../views/editable/AccountInfo.vue";
-import SignIn from "../views/SignIn.vue";
-import SignUp from "../views/SignUp.vue";
-import ParentInfo from "../views/ParentInfo.vue";
-import Education from "../views/Education.vue";
-import StudentActivities from "../views/StudentActivities.vue";
-// vuex
+// import components
+import PersonalInfo from "../components/profile/PersonalInfo.vue";
+import ParentInfo from "../components/profile/ParentInfo.vue";
+import Education from "../components/profile/Education.vue";
+import StudentActivities from "../components/profile/StudentActivities.vue";
+import AccountInfo from "../components/profile/editable/AccountInfo.vue";
+import SignIn from "../components/SignIn.vue";
+import SignUp from "../components/SignUp.vue";
+// import vuex
 import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
@@ -41,7 +43,7 @@ export default {
     accountInfo: AccountInfo
   },
   computed: mapState({
-    selectedComponent: state => state.switchComponents.selectedComponent;
+    selectedComponent: state => state.switchComponents.selectedComponent
   }),
   methods: mapActions(["selectComponent"])
 };
