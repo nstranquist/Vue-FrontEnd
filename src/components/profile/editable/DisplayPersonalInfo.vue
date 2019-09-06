@@ -27,10 +27,10 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex'
 export default {
-  data() {
-    return {};
+  data () {
+    return {}
   },
   computed: mapState({
     gender: state => state.profile.personalInfo.gender,
@@ -45,12 +45,12 @@ export default {
     disabilities: state => state.profile.personalInfo.disabilities
   }),
   methods: {
-    editPersonalInfo() {
-      //update method
-      this.$emit("editPersonalInfo", !this.show);
+    editPersonalInfo () {
+      // update method
+      this.$emit('editPersonalInfo', !this.show)
     }
   }
-};
+}
 </script>
 
 <style>

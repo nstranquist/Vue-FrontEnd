@@ -26,37 +26,37 @@
 </template>
 
 <script>
-import AccountInfo from "../components/profile/editable/AccountInfo.vue";
+import AccountInfo from '../components/profile/editable/AccountInfo.vue'
 export default {
   components: {
     accountInfo: AccountInfo
   },
-  data() {
+  data () {
     return {
       accountInfo: {
-        firstname: "",
-        lastnmae: "",
-        verify: "",
-        password: "",
-        email: "",
-        address: "",
-        phone: ""
+        firstname: '',
+        lastnmae: '',
+        verify: '',
+        password: '',
+        email: '',
+        address: '',
+        phone: ''
       },
       show: true
-    };
+    }
   },
   methods: {
-    setUserCredentials() {
+    setUserCredentials () {
       // set data
-      this.$store.commit("updateAccountInfo", this.accountInfo);
-      this.show = false;
-      console.log("setUserCredentials: " + this.show);
+      this.$store.commit('updateAccountInfo', this.accountInfo)
+      this.show = false
+      console.log('setUserCredentials: ' + this.show)
     },
-    edit(updated) {
-      this.show = updated;
+    edit (updated) {
+      this.show = updated
     }
   }
-};
+}
 </script>
 
 <style>

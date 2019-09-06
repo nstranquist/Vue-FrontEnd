@@ -89,6 +89,7 @@ const educationalExperiences = [
   'Catholic High School Student/Graduate',
   'Community Junior College',
   'Commuter Student',
+  // eslint-disable-next-line no-tabs
   'Continuing Education After Interuption	Descendant Of Alumni Of Same School',
   'Transfer Students (From 4-Year Schools)',
   'Transfer From Comm. or Junior College',
@@ -436,6 +437,9 @@ export default {
   genders,
   educationalExperiences,
   military,
-  disabilities
+  disabilities,
+  heritages,
+  gpa,
+  citizenships
 
 }

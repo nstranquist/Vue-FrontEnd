@@ -4,7 +4,7 @@ const state = {
 }
 
 const mutations = {
-  switchComponent(state, payload) {
+  switchComponent (state, payload) {
     state.selectedComponent = payload
     console.log(state.selectedComponent)
   }
@@ -13,7 +13,7 @@ const mutations = {
 const actions = {
   selectComponent: ({ commit }, payload) => {
     commit('switchComponent', payload)
-    console.log(state.selectedComponent);
+    console.log(state.selectedComponent)
   }
 }
 

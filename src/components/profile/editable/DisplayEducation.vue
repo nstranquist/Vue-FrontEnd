@@ -23,31 +23,31 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
-    export default {
-        props: ['show'],
-        data() {
-            return{
-            }
-        },
-        computed:
+import { mapState } from 'vuex'
+export default {
+  props: ['show'],
+  data () {
+    return {
+    }
+  },
+  computed:
         mapState({
 
-                graduationDate: state => state.profile.education.graduationDate,
-                math: state => state.profile.education.math,
-                ebrw:  state => state.profile.education.ebrw,
-                written: state => state.profile.education.written,
-                act: state => state.profile.education.act,
-                enrolled: state => state.profile.education.enrolled,
-                transfer: state => state.profile.education.transfer,
-                college: state => state.profile.education.college,
+          graduationDate: state => state.profile.education.graduationDate,
+          math: state => state.profile.education.math,
+          ebrw: state => state.profile.education.ebrw,
+          written: state => state.profile.education.written,
+          act: state => state.profile.education.act,
+          enrolled: state => state.profile.education.enrolled,
+          transfer: state => state.profile.education.transfer,
+          college: state => state.profile.education.college
         }),
-        methods:{
-            editEducation(){
-                this.$emit('editEducation', !this.show);
-            }
-        }
+  methods: {
+    editEducation () {
+      this.$emit('editEducation', !this.show)
     }
+  }
+}
 </script>
 
 <style>

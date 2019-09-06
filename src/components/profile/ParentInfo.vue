@@ -30,33 +30,33 @@
 </template>
 
 <script>
-import DisplayParentInfo from "./editable/DisplayParentInfo.vue";
+import DisplayParentInfo from './editable/DisplayParentInfo.vue'
 export default {
   components: {
     displayParentInfo: DisplayParentInfo
   },
-  data() {
+  data () {
     return {
       info: {
-        memberships: "",
-        employer: "",
-        occupation: "",
-        military: ""
+        memberships: '',
+        employer: '',
+        occupation: '',
+        military: ''
       },
       show: true
-    };
+    }
   },
   methods: {
-    setParentInfo() {
+    setParentInfo () {
       // set data
-      this.show = false;
-      this.$store.commit("updateParentInfo", this.info);
+      this.show = false
+      this.$store.commit('updateParentInfo', this.info)
     },
-    edit(updated) {
-      this.show = updated;
+    edit (updated) {
+      this.show = updated
     }
   }
-};
+}
 </script>
 
 <style>

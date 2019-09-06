@@ -54,39 +54,39 @@
 </template>
 
 <script>
-import DisplayEducation from "./editable/DisplayEducation.vue";
+import DisplayEducation from './editable/DisplayEducation.vue'
 
 export default {
   components: {
     displayEducation: DisplayEducation
   },
-  data() {
+  data () {
     return {
       education: {
-        graduationDate: "",
-        math: "",
-        ebrw: "",
-        written: "",
-        act: "",
-        enrolled: "",
-        transfer: "",
-        college: ""
+        graduationDate: '',
+        math: '',
+        ebrw: '',
+        written: '',
+        act: '',
+        enrolled: '',
+        transfer: '',
+        college: ''
       },
       show: true
-    };
+    }
   },
   computed: {},
   methods: {
-    setEducation() {
+    setEducation () {
       // set data
-      this.show = false;
-      this.$store.commit("updateEducation", this.education);
+      this.show = false
+      this.$store.commit('updateEducation', this.education)
     },
-    edit(updated) {
-      this.show = updated;
+    edit (updated) {
+      this.show = updated
     }
   }
-};
+}
 </script>
 
 <style>

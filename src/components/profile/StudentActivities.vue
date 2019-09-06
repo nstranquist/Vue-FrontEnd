@@ -40,35 +40,35 @@
 </template>
 
 <script>
-import DisplayStudentActivities from "./editable/DisplayStudentActivities.vue";
+import DisplayStudentActivities from './editable/DisplayStudentActivities.vue'
 export default {
   components: {
     displayStudentActivities: DisplayStudentActivities
   },
-  data() {
+  data () {
     return {
       activities: {
-        fraternity: "",
-        military: "",
-        sorority: "",
-        sports: "",
-        perform: "",
-        employer: ""
+        fraternity: '',
+        military: '',
+        sorority: '',
+        sports: '',
+        perform: '',
+        employer: ''
       },
       show: true
-    };
+    }
   },
   methods: {
-    submitStudentActivities() {
+    submitStudentActivities () {
       // set data
-      this.show = false;
-      this.$store.commit("updateStudentActivities", this.activities);
+      this.show = false
+      this.$store.commit('updateStudentActivities', this.activities)
     },
-    edit(updated) {
-      this.show = updated;
+    edit (updated) {
+      this.show = updated
     }
   }
-};
+}
 </script>
 
 <style>

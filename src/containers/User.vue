@@ -15,22 +15,21 @@
   </div>
 </template>
 
-
 <script>
 // import components
-import PersonalInfo from "../components/profile/PersonalInfo.vue";
-import ParentInfo from "../components/profile/ParentInfo.vue";
-import Education from "../components/profile/Education.vue";
-import StudentActivities from "../components/profile/StudentActivities.vue";
-import AccountInfo from "../components/profile/editable/AccountInfo.vue";
-import SignIn from "../components/SignIn.vue";
-import SignUp from "../components/SignUp.vue";
+import PersonalInfo from '../components/profile/PersonalInfo.vue'
+import ParentInfo from '../components/profile/ParentInfo.vue'
+import Education from '../components/profile/Education.vue'
+import StudentActivities from '../components/profile/StudentActivities.vue'
+import AccountInfo from '../components/profile/editable/AccountInfo.vue'
+import SignIn from '../components/SignIn.vue'
+import SignUp from '../components/SignUp.vue'
 // import vuex
-import { mapState, mapMutations, mapActions } from "vuex";
+import { mapState, mapActions } from 'vuex'
 
 export default {
-  data() {
-    return {};
+  data () {
+    return {}
   },
 
   components: {
@@ -45,6 +44,6 @@ export default {
   computed: mapState({
     selectedComponent: state => state.switchComponents.selectedComponent
   }),
-  methods: mapActions(["selectComponent"])
-};
+  methods: mapActions(['selectComponent'])
+}
 </script>

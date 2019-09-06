@@ -103,59 +103,59 @@
 </template>
 
 <script>
-import DisplayPersonalInfo from "./editable/DisplayPersonalInfo.vue";
-import * as data from "../../data";
+import DisplayPersonalInfo from './editable/DisplayPersonalInfo.vue'
+import * as data from '../../data'
 
 export default {
   components: {
     displayPersonalInfo: DisplayPersonalInfo
   },
-  data() {
+  data () {
     return {
       months: data.default.months,
       genders: data.default.genders,
       majors: data.default.majors,
       disabilities: data.default.disabilities,
-      selectedMonth: "",
-      selectedDay: "",
-      selectedYear: "",
+      selectedMonth: '',
+      selectedDay: '',
+      selectedYear: '',
       educationalExperiences: data.default.educationalExperiences,
       info: {
-        gender: "",
-        birthday: "",
-        citizenship: "",
-        heritage: "",
-        religion: "",
-        majors: "",
-        career: "",
-        honors: "",
-        education: "",
-        disabilities: ""
+        gender: '',
+        birthday: '',
+        citizenship: '',
+        heritage: '',
+        religion: '',
+        majors: '',
+        career: '',
+        honors: '',
+        education: '',
+        disabilities: ''
       },
       show: true
-    };
+    }
   },
   computed: {
-    years() {
-      console.log(data.default.majors);
-      const year = new Date();
+    years () {
+      console.log(data.default.majors)
+      const year = new Date()
       return Array.from(
         { length: year.getFullYear() - 1959 },
         (_, index) => 1960 + index
-      );
+      )
     }
   },
   methods: {
-    setPersonalInfo() {
+    setPersonalInfo () {
       // set data
-      this.$store.commit("updatePersonalInfo", this.info);
-      this.show = false;
+      this.$store.commit('updatePersonalInfo', this.info)
+      this.show = false
     },
-    edit(updated) {
-      this.show = updated;
+    edit (updated) {
+      this.show = updated
     }
   }
-};
+}
 </script>
 
 <style>

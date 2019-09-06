@@ -16,28 +16,28 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
+import { mapState } from 'vuex'
 
-    export default {
-        data() {
-            return{
-            }
-        },
-        computed:
+export default {
+  data () {
+    return {
+    }
+  },
+  computed:
          mapState({
 
-            memberships: (state) => state.profile.parentInfo.memberships,
-            employer: (state) => state.profile.parentInfo.employer,
-            occupation: (state) => state.profile.parentInfo.occupation,
-            military: (state) => state.profile.parentInfo.military,
+           memberships: (state) => state.profile.parentInfo.memberships,
+           employer: (state) => state.profile.parentInfo.employer,
+           occupation: (state) => state.profile.parentInfo.occupation,
+           military: (state) => state.profile.parentInfo.military
 
          }),
-         methods:{
-                editParentInfo(){
-                     this.$emit('editParentInfo', !this.show)
-                }
-         }
+  methods: {
+    editParentInfo () {
+      this.$emit('editParentInfo', !this.show)
     }
+  }
+}
 </script>
 
 <style>

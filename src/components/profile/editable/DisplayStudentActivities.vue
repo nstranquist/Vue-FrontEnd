@@ -20,30 +20,30 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-    export default {
-        data() {
-            return{
+import { mapState } from 'vuex'
+export default {
+  data () {
+    return {
 
-            }
-        },
-        computed:
-              mapState ({
+    }
+  },
+  computed:
+              mapState({
 
                 fraternity: state => state.profile.studentActivities.fraternity,
                 military: state => state.profile.studentActivities.military,
                 sorority: state => state.profile.studentActivities.sorority,
                 sports: state => state.profile.studentActivities.sports,
                 perform: state => state.profile.studentActivities.perform,
-                employer: state => state.profile.studentActivities.employer,
+                employer: state => state.profile.studentActivities.employer
 
-                }),
-          methods:{
-                 editStudentActivities(){
-                     this.$emit('editActivities', !this.show)
-                }
-         }
+              }),
+  methods: {
+    editStudentActivities () {
+      this.$emit('editActivities', !this.show)
     }
+  }
+}
 </script>
 
 <style>

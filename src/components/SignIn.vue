@@ -12,18 +12,18 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      email: "",
-      password: ""
-    };
+      email: '',
+      password: ''
+    }
   },
   methods: {
-    login() {
+    login () {
       // validate user exists
     }
   }
-};
+}
 </script>
 
 <style>
