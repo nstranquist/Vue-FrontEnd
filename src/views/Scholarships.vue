@@ -16,8 +16,6 @@ export default {
   name: "scholarships",
   methods: {
     toggleRoute() {
-      console.log("toggle route called");
-      console.log(this);
       this.$router.push("/scholarships/4");
     }
   },
