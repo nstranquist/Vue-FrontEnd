@@ -19,7 +19,7 @@
         <v-img src="/img/logo.png" height="34" contain />
       </v-list-item-avatar>
 
-      <v-list-item-title class="title">Welcome, Bryon</v-list-item-title>
+      <v-list-item-title class="title">Bryon P</v-list-item-title>
     </v-list-item>
 
     <v-divider class="mx-3 mb-3" />
