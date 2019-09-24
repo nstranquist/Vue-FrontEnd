@@ -1,0 +1,8 @@
+instructions for deploying to firebase:
+
+1) npm i -g firebase-tools   (if not already installed)
+2) firebase login   (make edurain firbase/gcp account eventually)
+3) yarn build   (if working changes)
+4) firebase deploy
+
+If needing to reconfigure project, you can run: firebase init
