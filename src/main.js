@@ -1,17 +1,24 @@
 import Vue from 'vue'
 import App from './App.vue'
-import './css/form.css'
-// import router from './router'
-import store from './store'
-import './registerServiceWorker'
 import User from './containers/User.vue'
+// import plugins
+import router from './router'
+import vuetify from './plugins/vuetify';
+import store from './store'
+// style imports
+import './css/form.css'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
+
+import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
-Vue.component('edurain-user-profile', User)
+// change this(?)
+//Vue.component('edurain-user-profile', User)
 
 new Vue({
-  //  router,
+  vuetify,
+  router,
   store,
   render: h => h(App)
 }).$mount('#app')
