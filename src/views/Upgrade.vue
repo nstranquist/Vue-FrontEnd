@@ -38,8 +38,8 @@
 
 <script>
 export default {
-  name: "upgrade"
-};
+  name: 'upgrade'
+}
 </script>
 
 <style scoped>

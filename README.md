@@ -1,5 +1,9 @@
 # edurain-app-ui
 
+[Live Here](https://edurain-frontend-253920.firebaseapp.com/#/)
+Deployed code lives in /dist
+run 'npm run build' or 'yarn build', and then 'firebase deploy' to build and deploy changes
+
 ## Project setup
 ```
 npm install

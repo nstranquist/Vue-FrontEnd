@@ -87,43 +87,43 @@
 
 <script>
 export default {
-  name: "dashboard",
+  name: 'dashboard',
   data: () => ({
     date: 1,
     dates: [
-      { text: "Sep. 12" },
-      { text: "Sep. 18" },
-      { text: "Oct. 9" },
-      { text: "Nov. 21" }
+      { text: 'Sep. 12' },
+      { text: 'Sep. 18' },
+      { text: 'Oct. 9' },
+      { text: 'Nov. 21' }
     ],
     matchedScholarships: 1,
     matchedScholarships: [
-      { route: "/scholarships/1", text: "Washington Universtiy" },
-      { route: "/scholarships/2", text: "Saint Louis Universtiy" },
-      { route: "/scholarships/3", text: "University of Missoui - St. Louis" },
-      { route: "/scholarships/4", text: "Rotary Club Scholarship" }
+      { route: '/scholarships/1', text: 'Washington Universtiy' },
+      { route: '/scholarships/2', text: 'Saint Louis Universtiy' },
+      { route: '/scholarships/3', text: 'University of Missoui - St. Louis' },
+      { route: '/scholarships/4', text: 'Rotary Club Scholarship' }
     ],
     notStartedApps: [
-      { text: "Item 1" },
-      { text: "Item 2" },
-      { text: "Item 3" },
-      { text: "Item 4" }
+      { text: 'Item 1' },
+      { text: 'Item 2' },
+      { text: 'Item 3' },
+      { text: 'Item 4' }
     ],
     inProgressApps: [
-      { text: "Item 1" },
-      { text: "Item 2" },
-      { text: "Item 3" }
+      { text: 'Item 1' },
+      { text: 'Item 2' },
+      { text: 'Item 3' }
     ],
     completedApps: [
-      { text: "Item 1" },
-      { text: "Item 2" },
-      { text: "Item 3" },
-      { text: "Item 4" },
-      { text: "Item 5" }
+      { text: 'Item 1' },
+      { text: 'Item 2' },
+      { text: 'Item 3' },
+      { text: 'Item 4' },
+      { text: 'Item 5' }
     ]
   }),
   methods: {}
-};
+}
 </script>
 
 <style scoped>

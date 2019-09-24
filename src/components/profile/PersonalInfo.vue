@@ -1,166 +1,180 @@
 <template>
-  <div>
-    <div class="form" v-show="show">
-      <h1 class="title-heading">Personal Information</h1>
-      <hr />
-      <label for="birthday">Birthday</label>
-      <div>
-        <select v-model="selectedMonth" class="birthday">
-          <option disabled value>Month</option>
-          <option v-for="(month, index) in months" :key="index" :value="month">{{month}}</option>
-        </select>
-
-        <select v-model="selectedDay" class="birthday">
-          <option disabled value>Day</option>
-          <option v-for="(i, index) in 31" :key="index" :value="i">{{i}}</option>
-        </select>
-
-        <select v-model="selectedYear" class="birthday">
-          <option disabled value>Year</option>
-          <option v-for="(year, index) in years" :key="index" :value="year">{{year}}</option>
-        </select>
-      </div>
-
-      <p>Gender</p>
-      <select v-model="info.gender">
-        <option disabled value>Please Select One</option>
-        <option v-for="(gender, index) in genders" :key="index" :value="gender">{{gender}}</option>
-      </select>
-
-      <label for="citizensihip">Citizenship</label>
-      <!-- should this be text or  a select element -->
-
-      <select v-model="info.citizenship">
-        <option disabled value>Please select one</option>
-        <option value="one">example #1</option>
-        <option value="two">example #2</option>
-        <option value="three">example #3</option>
-        <option value="four">example #4</option>
-      </select>
-
-      <label for="disabilities">Disabilites</label>
-      <select v-model="info.disabilities">
-        <option disabled value>Please select one</option>
-        <option
-          v-for="(disabilitie, index) in disabilities"
-          :key="index"
-          :value="disabilitie"
-        >{{disabilitie}}</option>
-      </select>
-      <label for="heritage">Heritage</label>
-      <select v-model="info.heritage">
-        <option disabled value>Please select one</option>
-        <option value="one">example #1</option>
-        <option value="two">example #2</option>
-        <option value="three">example #3</option>
-        <option value="four">example #4</option>
-      </select>
-      <label for="religion">Religion</label>
-      <select v-model="info.religion">
-        <option disabled value>Please select one</option>
-        <option value="one">example #1</option>
-        <option value="two">example #2</option>
-        <option value="three">example #3</option>
-        <option value="four">example #4</option>
-      </select>
-
-      <label for="majors">Possible Majors</label>
-      <select v-model="info.majors">
-        <option disabled value>Please Select One</option>
-        <option v-for="(major, index) in majors" :key="index" :value="major">{{major}}</option>
-      </select>
-      <label for="career">Career Objectives</label>
-      <select v-model="info.career">
-        <option disabled value>Please select one</option>
-
-        <option value="one">example #1</option>
-        <option value="two">example #2</option>
-        <option value="three">example #3</option>
-        <option value="four">example #4</option>
-      </select>
-      <label for="honors">Academic Honors</label>
-      <input type="text" id="honors" v-model="info.honors" />
-      <br />
-      <!-- should this be text or  a select element -->
-
-      <!-- need to be a multiselect -->
-      <label for="education">Educational Experiences</label>
-      <select v-model="info.education">
-        <option disabled value>Please Select One</option>
-        <option
-          v-for="(educationalExperience, index) in educationalExperiences"
-          :key="index"
-          :value="educationalExperience"
-        >{{educationalExperience}}</option>
-      </select>
-
-      <button @click="setPersonalInfo" class="button">Save</button>
-    </div>
-    <div v-show="!show">
-      <display-personal-info :show=" show" @editPersonalInfo="edit"></display-personal-info>
-    </div>
-  </div>
+        <v-container>
+          <v-card>
+            <v-form>
+              <v-container>
+                <h1 class="title-heading">Personal Information</h1>
+                <v-row>
+                   <v-col cols="12" md="12">
+                    <p>Birthday</p>
+                  </v-col>
+                   <v-col cols="12" md="2">
+                    <v-select  :items ="months"
+                      label="Month" v-model="selectedMonth"
+                    ></v-select>
+                  </v-col>
+                  <v-col cols="12" md="2">
+                   <v-select
+                      :items="days"
+                      label="Day" v-model="selectedDay"
+                    ></v-select>
+                  </v-col>
+                  <v-col cols="12" md="2">
+                   <v-select
+                      :items="years"
+                      label="Year" v-model="selectedYear"
+                    ></v-select>
+                  </v-col>
+                    <v-col cols="12" md="3">
+                   <v-select
+                   v-model="personalInfo.gender"
+                      :items="genders"
+                      label="Gender"
+                    ></v-select>
+                  </v-col>
+                  <v-col cols="12" md="3">
+                   <v-select
+                      :items="items"
+                      label="Citizenship" v-model="personalInfo.citizenship"
+                    ></v-select>
+                  </v-col>
+                    <v-col cols="12" md="4">
+                   <v-select
+                      :items="items"
+                      label="Religion" v-model="personalInfo.religion"
+                    ></v-select>
+                  </v-col>
+                   <v-col cols="12" md="4">
+                   <v-select
+                      :items="items"
+                      label="Heritage" v-model="personalInfo.heritage"
+                    ></v-select>
+                  </v-col>
+                    <v-col cols="12" md="4">
+                   <v-select
+                      :items="disabilities"
+                      label="Disabilities" v-model="personalInfo.disabilities"
+                    ></v-select>
+                  </v-col>
+                    <v-col cols="12" md="4">
+                   <v-select
+                      :items="majors"
+                      label="Possible Majors" v-model="personalInfo.major"
+                    ></v-select>
+                  </v-col>
+                   <v-col cols="12" md="4">
+                   <v-select
+                      :items="items"
+                      label="Career Objectives" v-model="personalInfo.career"
+                    ></v-select>
+                  </v-col>
+                   <v-col cols="12" md="4">
+                   <v-select
+                      :items="items"
+                      label="Academic Honors"  v-model="personalInfo.honors"
+                    ></v-select>
+                  </v-col>
+                 <v-col cols="12" md="4">
+                   <v-select
+                      :items="educationalExperiences"
+                      label="Educational Experiences" v-model="personalInfo.educationalExperiences"
+                    ></v-select>
+                  </v-col>
+                   <v-col  cols="12" class="text-center">
+                    <v-btn v-show="displayBtn" class="form-update-btn" @click="setPersonalInfo">Save</v-btn>
+                    <v-btn v-show="displayBtn" class="form-update-btn" @click="clickNext">Next</v-btn>
+                     <v-btn v-show="!displayBtn" class="form-update-btn" @click="setPersonalInfo">Update</v-btn>
+                    </v-col>
+                    </v-row>
+              </v-container>
+            </v-form>
+          </v-card>
+        </v-container>
 </template>
-
 <script>
-import DisplayPersonalInfo from "./editable/DisplayPersonalInfo.vue";
-import * as data from "../../data";
+import * as data from '../../data'
 
 export default {
   components: {
-    displayPersonalInfo: DisplayPersonalInfo
   },
-  data() {
+  props: {
+   displayBtn: Boolean
+  },
+   data () {
     return {
+      items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       months: data.default.months,
       genders: data.default.genders,
       majors: data.default.majors,
       disabilities: data.default.disabilities,
-      selectedMonth: "",
-      selectedDay: "",
-      selectedYear: "",
+      selectedMonth: '',
+      selectedDay: '',
+      selectedYear: '',
       educationalExperiences: data.default.educationalExperiences,
-      info: {
-        gender: "",
-        birthday: "",
-        citizenship: "",
-        heritage: "",
-        religion: "",
-        majors: "",
-        career: "",
-        honors: "",
-        education: "",
-        disabilities: ""
-      },
-      show: true
-    };
+      personalInfo: {
+        gender: '',
+        birthday: '',
+        citizenship: '',
+        heritage: '',
+        religion: '',
+        major: '',
+        career: '',
+        honors: '',
+        education: '',
+        disabilities: '',
+        educationalExperiences:''
+      }
+    }
   },
   computed: {
-    years() {
-      console.log(data.default.majors);
+    years () {
       const year = new Date();
-      return Array.from(
+      const yearArray = Array.from(
         { length: year.getFullYear() - 1959 },
         (_, index) => 1960 + index
       );
+      return yearArray.reverse();
+    },
+    days(){
+      const maxDays = 31;
+      const listDays = [];
+      let dayNumber = 1;
+      while ( dayNumber  <= maxDays) {
+              listDays.push(dayNumber) ;
+              dayNumber++;
+      };
+      return listDays;
     }
   },
   methods: {
-    setPersonalInfo() {
+    setPersonalInfo () {
       // set data
-      this.$store.commit("updatePersonalInfo", this.info);
-      this.show = false;
+
+      let setBirthday = '';
+      setBirthday += this.selectedMonth + ' ';
+      setBirthday +=  this.selectedDay + ' ';
+      setBirthday +=  this.selectedYear;
+
+      this.personalInfo.birthday =   setBirthday;
+      this.$store.commit('updatePersonalInfo', this.personalInfo);
+
+      if(!this.displayBtn){
+        this.returnToDisplayProfileSurvey();
+      }
     },
-    edit(updated) {
-      this.show = updated;
-    }
+    clickNext () {
+      console.log('display:' + this.display)
+      console.log(this.$store.getters.getPersonalInfo)
+      this.$emit('selectComponent', 'Education');
+    },
+     returnToDisplayProfileSurvey(){
+      console.log('return to display')
+      this.$emit('selectComponent', 'DisplayProfileSurvey');
   }
-};
+  },
+
+}
 </script>
 
 <style>
-.birthday {
-  width: 6rem !important;
-  display: inline-block !important;
-}
 </style>

@@ -20,7 +20,7 @@ const military = [
   'Foreign country military'
 ]
 
-const citizenships = []
+// const citizenships = []
 
 const disabilities = [
   'ADHD',
@@ -67,29 +67,28 @@ const disabilities = [
   'Ulcerative Colitis'
 ]
 
-const heritages = []
+// const heritages = []
 
 const gpa = [
-  4.0,
-  3.7,
-  3.3,
-  3.0,
-  2.7,
-  2.3,
-  2.0,
-  1.7,
-  1.3,
-  1.0,
-  0.0
+  '4.0',
+  '3.7',
+  '3.3',
+  '3.0',
+  '2.7',
+  '2.3',
+  '2.0',
+  '1.7',
+  '1.3',
+  '1.0',
+  '0.0'
 ]
-
 const educationalExperiences = [
   'Alternative High School Student/Graduate',
   'Associates Degree (Received)',
   'Catholic High School Student/Graduate',
   'Community Junior College',
   'Commuter Student',
-  'Continuing Education After Interuption	Descendant Of Alumni Of Same School',
+  'Continuing Education After Interuption Descendant Of Alumni Of Same School',
   'Transfer Students (From 4-Year Schools)',
   'Transfer From Comm. or Junior College',
   'Technical/Vocational School Student/Graduate,',
@@ -436,6 +435,7 @@ export default {
   genders,
   educationalExperiences,
   military,
-  disabilities
+  disabilities,
+  gpa
 
 }

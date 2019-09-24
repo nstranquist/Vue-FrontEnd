@@ -18,14 +18,17 @@ const state = {
     military: ''
   },
   education: {
-    graduationDate: '',
+    highSchoolGraduationYear: '',
     math: '',
     ebrw: '',
     written: '',
     act: '',
     enrolled: '',
     transfer: '',
-    college: ''
+    college: '',
+    collegeGraduationYear: '',
+    highSchool: '',
+    gpa: ''
   },
   studentActivities: {
     fraternity: '',
@@ -61,13 +64,13 @@ const getters = {
     return state.personalInfo
   },
   getParentInfo: state => {
-    return state.personalInfo
+    return state.parentInfo
   },
   getEducation: state => {
-    return state.personalInfo
+    return state.education
   },
   getStudentActivities: state => {
-    return state.personalInfo
+    return state.studentActivities
   }
 
 }

@@ -52,18 +52,18 @@
 
 <script>
 export default {
-  name: "templates",
+  name: 'templates',
   data: () => ({
     templateItems: [
-      "Prose Fiction",
-      "Persuasive Essay",
-      "Research Paper",
-      "Argumentative",
-      "Personal Narrative",
-      "Poetry"
+      'Prose Fiction',
+      'Persuasive Essay',
+      'Research Paper',
+      'Argumentative',
+      'Personal Narrative',
+      'Poetry'
     ]
   })
-};
+}
 </script>
 
 <style scoped>

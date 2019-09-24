@@ -1,93 +1,134 @@
 <template>
-  <div>
-    <div class="form" v-show="show">
-      <h1 class="title-heading">Education</h1>
-      <hr />
-      <label for="graduationDate">High School Graduation</label>
-
-      <select v-model="education.graduationDate">
-        <option disabled value>Please select one</option>
-        <option value="one">example #1</option>
-        <option value="two">example #2</option>
-        <option value="three">example #3</option>
-        <option value="four">example #4</option>
-      </select>
-
-      <label for="math">SAT Math Score:</label>
-      <input type="text" id="math" v-model="education.math" />
-
-      <label for="ebrw">SAT ( EBRW )</label>
-      <input type="text" name="ebrw" v-model="education.ebrw" />
-
-      <label for="written">SAT Written Score</label>
-      <input type="text" id="written" v-model="education.written" />
-
-      <label for="act">ACT Score</label>
-      <input type="text" id="act" v-model="education.act" />
-
-      <p>Currently Enrolled</p>
-      <input type="radio" id="yes" value="yes" v-model="education.enrolled" name="enrolled" checked />
-      <label for="yes" class="radio-label">Yes</label>
-      <input type="radio" id="no" value="no" v-model="education.enrolled" name="enrolled" />
-      <label for="no" class="radio-label">No</label>
-
-      <p>Transfer Within A Year</p>
-      <input type="radio" id="yes" value="yes" name="transfer" v-model="education.transfer" checked />
-      <label for="yes" class="radio-label">Yes</label>
-      <input type="radio" id="no" value="no" v-model="education.transfer" name="transfer" />
-      <label for="no" class="radio-label">No</label>
-
-      <label for="college">College Graduation Year</label>
-      <select v-model="education.college">
-        <option disabled value>Please select one</option>
-        <option value="one">example #1</option>
-        <option value="two">example #2</option>
-        <option value="three">example #3</option>
-        <option value="four">example #4</option>
-      </select>
-      <button @click="setEducation" class="button">Save</button>
-    </div>
-    <div v-show="!show">
-      <display-education :show="show" @editEducation="edit"></display-education>
-    </div>
-  </div>
+   <v-container>
+          <v-card>
+            <v-form>
+              <v-container>
+                <h3 class="title-heading">Education</h3>
+                <v-row>
+                   <v-col cols="12" md="3">
+                    <v-text-field v-model="education.math" label="SAT Math Score" />
+                  </v-col>
+                  <v-col cols="12" md="3">
+                    <v-text-field v-model="education.ebrw" label="SAT ( EBRW )" />
+                  </v-col>
+                        <v-col cols="12" md="3">
+                    <v-text-field v-model="education.written"  label="SAT Written Score" />
+                  </v-col>
+                  <v-col cols="12" md="3">
+                    <v-text-field v-model="education.act"  label="ACT Score" />
+                  </v-col>
+                 <v-col cols="12" md="5">
+                   <v-select
+                      :items="items"
+                      v-model="education.highSchoolGraduationYear"
+                      label="High School Graduation Year"
+                    ></v-select>
+                  </v-col>
+                   <v-col cols="12" md="5">
+                   <v-select
+                      :items="items"
+                      v-model="education.collegeGraduationYear"
+                      label="College Graduation Year"
+                    ></v-select>
+                  </v-col>
+                  <v-col cols="12" md="3">
+                    <v-text-field v-model="education.highSchool"  label="High School" />
+                  </v-col>
+                   <v-col cols="12" md="3">
+                   <v-select
+                      :items="gpa"
+                      label="GPA" v-model="education.gpa"
+                    ></v-select>
+                  </v-col>
+                  <v-col cols="12" md="4">
+                    <v-text-field v-model="education.college" label="College" />
+                  </v-col>
+                  <v-col cols="12" md="4">
+                      <p>Transfer Within a Year</p>
+                      <v-radio-group v-model="education.transfer">
+                        <v-radio label="Yes" value="Yes"></v-radio>
+                        <v-radio label="No" value="No"></v-radio>
+                     </v-radio-group>
+                  </v-col>
+                        <v-col cols="12" md="4">
+                      <p>Currently Enrolled</p>
+                      <v-radio-group v-model="education.enrolled">
+                        <v-radio label="Yes" value="Yes"></v-radio>
+                        <v-radio label="No" value="No"></v-radio>
+                     </v-radio-group>
+                  </v-col>
+                  <v-col cols="12" class="text-center">
+                    <v-btn v-show="displayBtn" @click="clickPrevious">Previous</v-btn>
+                     <v-btn v-show="displayBtn"  @click="setEducation">Save</v-btn>
+                    <v-btn v-show="displayBtn" @click="clickNext">Next</v-btn>
+                    <v-btn v-show="!displayBtn" class="form-update-btn" @click="setEducation">Update</v-btn>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-form>
+          </v-card>
+        </v-container>
 </template>
 
 <script>
-import DisplayEducation from "./editable/DisplayEducation.vue";
+import * as data from '../../data'
 
 export default {
   components: {
-    displayEducation: DisplayEducation
   },
-  data() {
+   props: {
+   displayBtn: Boolean
+  },
+  data () {
     return {
+      gpa: data.default.gpa,
+      items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       education: {
-        graduationDate: "",
-        math: "",
-        ebrw: "",
-        written: "",
-        act: "",
-        enrolled: "",
-        transfer: "",
-        college: ""
-      },
-      show: true
-    };
-  },
-  computed: {},
-  methods: {
-    setEducation() {
-      // set data
-      this.show = false;
-      this.$store.commit("updateEducation", this.education);
-    },
-    edit(updated) {
-      this.show = updated;
+        highSchoolGraduationYear: '',
+         collegeGraduationYear: '',
+        math: '',
+        ebrw: '',
+        written: '',
+        act: '',
+        enrolled: '',
+        transfer: '',
+        college: '',
+      highSchool: '',
+      gpa:''
+      }
     }
+  },
+  computed: {
+  },
+  methods: {
+    setEducation () {
+      // set data
+      this.$store.commit('updateEducation', this.education);
+
+      if(!this.displayBtn){
+        this.returnToDisplayProfileSurvey();
+      }
+    },
+    clickNext () {
+      console.log(this.$store.getters.getEducation)
+      this.selectComponent('StudentActivities');
+    },
+    clickPrevious () {
+      this.selectComponent('PersonalInfo');
+    },
+    selectComponent (componentName) {
+      this.$emit('selectComponent', componentName);
+    },
+    returnToDisplayProfileSurvey(){
+      console.log('return to display')
+      this.$emit('selectComponent', 'DisplayProfileSurvey');
   }
-};
+  }
+}
 </script>
 
 <style>
+p {
+  color: rgba(0, 0, 0, 0.54)
+}
 </style>

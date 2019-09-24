@@ -11,8 +11,8 @@
 
 <script>
 export default {
-  name: "settings"
-};
+  name: 'settings'
+}
 </script>
 
 <style scoped>

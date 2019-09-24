@@ -1,62 +1,92 @@
 <template>
-  <div>
-    <div class="form" v-show="show">
-      <h1 class="title-heading">Parent Information</h1>
-      <hr />
-      <label for="memberships">Parent Associations and Memberships</label>
-      <input type="text" id="memberships" v-model="info.memberships" />
-
-      <label for="employer">Current/Previous Employers</label>
-      <input type="text" id="employer" v-model="info.employer" />
-
-      <label for="military">Parent Military Experience</label>
-      <select id="military" v-model="info.military">
-        <option disabled value>Please select one</option>
-        <option value="one">example #1</option>
-        <option value="two">example #2</option>
-        <option value="three">example #3</option>
-        <option value="four">example #4</option>
-      </select>
-
-      <label for="occupation">Parent Occupation</label>
-      <input type="text" id="occupation" v-model="info.occupation" />
-
-      <button @click="setParentInfo" class="button">Save</button>
-    </div>
-    <div v-show="!show">
-      <display-parent-info :show="show" @editParentInfo="edit"></display-parent-info>
-    </div>
-  </div>
+<v-container>
+          <v-card>
+            <v-form>
+              <v-container class="py-0">
+                <h1 class="title-heading">Parent Information</h1>
+                <v-row>
+                   <v-col cols="12" md="3">
+                    <v-text-field v-model="parentInfo.occupation" label="Parent Occupation" />
+                  </v-col>
+                   <v-col cols="12" md="5">
+                   <v-select
+                      :items="military" v-model="parentInfo.military"
+                      label="Parent Military Experience"
+                    ></v-select>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                         <v-textarea
+                        outlined
+                        name="input-7-4" v-model="parentInfo.memberships"
+                        label="Parent Associations and Memberships">
+                        </v-textarea>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                         <v-textarea
+                        outlined
+                        name="input-7-4" v-model="parentInfo.employer"
+                        label="Current/Previous Employers">
+                        </v-textarea>
+                  </v-col>
+                  <v-col cols="12" class="text-center">
+                    <v-btn  v-show="displayBtn"  @click="clickPrevious">Previous</v-btn>
+                    <v-btn v-show="displayBtn"  @click="setParentInfo">Save</v-btn>
+                    <v-btn v-show="displayBtn"  @click="completed">Done</v-btn>
+                     <v-btn v-show="!displayBtn" class="form-update-btn" @click="setParentInfo">Update</v-btn>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-form>
+          </v-card>
+        </v-container>
 </template>
 
 <script>
-import DisplayParentInfo from "./editable/DisplayParentInfo.vue";
+import * as data from '../../data'
+
 export default {
   components: {
-    displayParentInfo: DisplayParentInfo
   },
-  data() {
+  props: {
+   displayBtn: Boolean
+  },
+  data () {
     return {
-      info: {
-        memberships: "",
-        employer: "",
-        occupation: "",
-        military: ""
+      military: data.default.military,
+      items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      parentInfo: {
+        memberships: '',
+        employer: '',
+        occupation: '',
+        military: ''
       },
-      show: true
-    };
+    }
   },
   methods: {
-    setParentInfo() {
-      // set data
-      this.show = false;
-      this.$store.commit("updateParentInfo", this.info);
-    },
-    edit(updated) {
-      this.show = updated;
+  setParentInfo () {
+        // set data
+        this.$store.commit('updateParentInfo', this.parentInfo);
+        if(!this.displayBtn){
+             this.returnToDisplayProfileSurvey();
+        }
+      },
+      clickPrevious () {
+        console.log(this.$store.getters.getParentInfo)
+        this.selectComponent('StudentActivities');
+      },
+        selectComponent (componentName) {
+        this.$emit('selectComponent', componentName);
+      },
+      completed() {
+        console.log('submit')
+        this.selectComponent('DisplayProfileSurvey');
+      },
+     returnToDisplayProfileSurvey(){
+        console.log('return to display')
+        this.$emit('selectComponent', 'DisplayProfileSurvey');
     }
   }
-};
+}
 </script>
 
 <style>

@@ -26,22 +26,22 @@
 
 <script>
 export default {
-  name: "TemplateItem",
+  name: 'TemplateItem',
   data: () => ({
     templateItems: [
-      "Blank Template",
-      "Prose Fiction Template",
-      "Persuasive Essay Template",
-      "Research Paper Template",
-      "Argumentative Template",
-      "Personal Narrative Template",
-      "Poetry Template"
+      'Blank Template',
+      'Prose Fiction Template',
+      'Persuasive Essay Template',
+      'Research Paper Template',
+      'Argumentative Template',
+      'Personal Narrative Template',
+      'Poetry Template'
     ],
-    getTemplateName: function(route) {
-      return this.data.templateItems[route];
+    getTemplateName: function (route) {
+      return this.data.templateItems[route]
     }
   })
-};
+}
 </script>
 
 <style scoped>

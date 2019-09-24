@@ -24,8 +24,8 @@
 
 <script>
 export default {
-  name: "ScholarshipDetail"
-};
+  name: 'ScholarshipDetail'
+}
 </script>
 
 <style scoped>
