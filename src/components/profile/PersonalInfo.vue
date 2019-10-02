@@ -82,7 +82,7 @@
                   </v-col>
                    <v-col  cols="12" class="text-center">
                     <v-btn v-show="displayBtn" class="form-update-btn" @click="setPersonalInfo">Save</v-btn>
-                    <v-btn v-show="displayBtn" class="form-update-btn" @click="clickNext">Next</v-btn>
+                    <v-btn v-show="displayBtn" class="form-update-btn" @click="clickNext('Education')">Next</v-btn>
                      <v-btn v-show="!displayBtn" class="form-update-btn" @click="setPersonalInfo">Update</v-btn>
                     </v-col>
                     </v-row>
@@ -93,12 +93,11 @@
 </template>
 <script>
 import * as data from '../../data'
+import {profileSurveyMixins} from '../../mixins/profileSurveyMixins.js'
 
 export default {
+   mixins: [profileSurveyMixins],
   components: {
-  },
-  props: {
-   displayBtn: Boolean
   },
    data () {
     return {
@@ -149,30 +148,16 @@ export default {
   methods: {
     setPersonalInfo () {
       // set data
-
+      console.log('personal info set')
       let setBirthday = '';
       setBirthday += this.selectedMonth + ' ';
       setBirthday +=  this.selectedDay + ' ';
       setBirthday +=  this.selectedYear;
-
-      this.personalInfo.birthday =   setBirthday;
-      this.$store.commit('updatePersonalInfo', this.personalInfo);
-
-      if(!this.displayBtn){
-        this.returnToDisplayProfileSurvey();
-      }
-    },
-    clickNext () {
-      console.log('display:' + this.display)
-      console.log(this.$store.getters.getPersonalInfo)
-      this.$emit('selectComponent', 'Education');
-    },
-     returnToDisplayProfileSurvey(){
-      console.log('return to display')
-      this.$emit('selectComponent', 'DisplayProfileSurvey');
-  }
-  },
-
+      this.personalInfo.birthday =  setBirthday;
+      
+      this.updateSurvey('updatePersonalInfo', this.personalInfo )
+    }
+   },
 }
 </script>
 

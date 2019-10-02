@@ -29,10 +29,10 @@
                         </v-textarea>
                   </v-col>
                   <v-col cols="12" class="text-center">
-                    <v-btn  v-show="displayBtn"  @click="clickPrevious">Previous</v-btn>
-                    <v-btn v-show="displayBtn"  @click="setParentInfo">Save</v-btn>
+                    <v-btn  v-show="displayBtn"  @click="clickPrevious('StudentActivities')">Previous</v-btn>
+                    <v-btn v-show="displayBtn"  @click="updateSurvey('updateParentInfo', parentInfo)">Save</v-btn>
                     <v-btn v-show="displayBtn"  @click="completed">Done</v-btn>
-                     <v-btn v-show="!displayBtn" class="form-update-btn" @click="setParentInfo">Update</v-btn>
+                     <v-btn v-show="!displayBtn" class="form-update-btn" @click="updateSurvey('updateParentInfo', parentInfo)">Update</v-btn>
                   </v-col>
                 </v-row>
               </v-container>
@@ -43,12 +43,11 @@
 
 <script>
 import * as data from '../../data'
+import {profileSurveyMixins} from '../../mixins/profileSurveyMixins.js'
 
 export default {
+    mixins: [profileSurveyMixins],
   components: {
-  },
-  props: {
-   displayBtn: Boolean
   },
   data () {
     return {
@@ -63,28 +62,10 @@ export default {
     }
   },
   methods: {
-  setParentInfo () {
-        // set data
-        this.$store.commit('updateParentInfo', this.parentInfo);
-        if(!this.displayBtn){
-             this.returnToDisplayProfileSurvey();
-        }
-      },
-      clickPrevious () {
-        console.log(this.$store.getters.getParentInfo)
-        this.selectComponent('StudentActivities');
-      },
-        selectComponent (componentName) {
-        this.$emit('selectComponent', componentName);
-      },
       completed() {
         console.log('submit')
         this.selectComponent('DisplayProfileSurvey');
-      },
-     returnToDisplayProfileSurvey(){
-        console.log('return to display')
-        this.$emit('selectComponent', 'DisplayProfileSurvey');
-    }
+      }
   }
 }
 </script>
