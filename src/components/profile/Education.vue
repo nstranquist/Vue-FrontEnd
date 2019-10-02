@@ -58,10 +58,10 @@
                      </v-radio-group>
                   </v-col>
                   <v-col cols="12" class="text-center">
-                    <v-btn v-show="displayBtn" @click="clickPrevious">Previous</v-btn>
-                     <v-btn v-show="displayBtn"  @click="setEducation">Save</v-btn>
-                    <v-btn v-show="displayBtn" @click="clickNext">Next</v-btn>
-                    <v-btn v-show="!displayBtn" class="form-update-btn" @click="setEducation">Update</v-btn>
+                    <v-btn v-show="displayBtn" @click="clickPrevious('PersonalInfo')">Previous</v-btn>
+                     <v-btn v-show="displayBtn"  @click="updateSurvey('updateEducation', education)">Save</v-btn>
+                    <v-btn v-show="displayBtn" @click="clickNext('StudentActivities')">Next</v-btn>
+                    <v-btn v-show="!displayBtn" class="form-update-btn" @click="updateSurvey('updateEducation', education)">Update</v-btn>
                   </v-col>
                 </v-row>
               </v-container>
@@ -72,12 +72,10 @@
 
 <script>
 import * as data from '../../data'
-
+import {profileSurveyMixins} from '../../mixins/profileSurveyMixins.js'
 export default {
+  mixins: [profileSurveyMixins],
   components: {
-  },
-   props: {
-   displayBtn: Boolean
   },
   data () {
     return {
@@ -101,28 +99,6 @@ export default {
   computed: {
   },
   methods: {
-    setEducation () {
-      // set data
-      this.$store.commit('updateEducation', this.education);
-
-      if(!this.displayBtn){
-        this.returnToDisplayProfileSurvey();
-      }
-    },
-    clickNext () {
-      console.log(this.$store.getters.getEducation)
-      this.selectComponent('StudentActivities');
-    },
-    clickPrevious () {
-      this.selectComponent('PersonalInfo');
-    },
-    selectComponent (componentName) {
-      this.$emit('selectComponent', componentName);
-    },
-    returnToDisplayProfileSurvey(){
-      console.log('return to display')
-      this.$emit('selectComponent', 'DisplayProfileSurvey');
-  }
   }
 }
 </script>
