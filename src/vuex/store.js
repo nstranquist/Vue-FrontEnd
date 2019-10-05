@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 // import modules
-import accountInformation from './modules/accountInfo'
-import profile from './modules/profile'
-import scholarships from './modules/scholarships'
+import accountInformation from '../modules/accountInfo'
+import profile from '../modules/profile'
+import scholarships from '../modules/scholarships'
 
 Vue.use(Vuex)
 
