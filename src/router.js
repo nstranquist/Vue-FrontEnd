@@ -2,10 +2,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Dashboard from './views/Dashboard.vue'
 import Profile from './views/Profile.vue'
+import Schools from './views/Schools.vue'
 import Scholarships from './views/Scholarships.vue'
 import ScholarshipDetail from './views/ScholarshipDetail.vue'
 import Templates from './views/Templates.vue'
 import TemplateItem from './views/TemplateItem.vue'
+import Housing from './views/Housing.vue'
+import HousingDetail from './views/HousingDetail.vue'
 import Settings from './views/Settings.vue'
 import Upgrade from './views/Upgrade.vue'
 // import SignIn from './views/SignIn.vue'
@@ -28,6 +31,11 @@ export default new Router({
     },
     // add store objects here to /profile routes
     {
+      path: '/schools',
+      name: 'Schools',
+      component: Schools
+    },
+    {
       path: '/scholarships',
       name: 'Scholarships',
       component: Scholarships
@@ -46,6 +54,16 @@ export default new Router({
       path: '/templates/:id',
       name: 'Template Item',
       component: TemplateItem
+    },
+    {
+      path: '/housing',
+      name: 'Housing',
+      component: Housing
+    },
+    {
+      path: '/housing/:id',
+      name: 'Housing Detail',
+      component: HousingDetail
     },
     {
       path: '/settings',
