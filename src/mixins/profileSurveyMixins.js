@@ -2,7 +2,6 @@ export const profileSurveyMixins = {
   props: {
     displayBtn: Boolean
   },
-
   methods: {
     updateSurvey (updateComponent, setData) {
       // set data
@@ -26,6 +25,14 @@ export const profileSurveyMixins = {
     },
     returnToDisplayProfileSurvey () {
       this.$emit('selectComponent', 'DisplayProfileSurvey')
+    },
+    calculateScores (maxNum, minNum) {
+      const maxNumber = maxNum
+      const minNumber = minNum
+      const scores = Array.from(
+        { length: maxNumber - minNumber },
+        (_, index) => minNumber + index)
+      return scores.reverse()
     }
   }
 }

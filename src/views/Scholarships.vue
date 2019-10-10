@@ -12,11 +12,19 @@
 </template>
 
 <script>
+import * as data from '../data'
 export default {
   name: 'scholarships',
+  scholarships: '',
+  async created(){
+    await this.loadScholarships();
+  },
   methods: {
     toggleRoute () {
-      this.$router.push('/scholarships/4')
+      this.$router.push('/scholarships/4');
+    },
+    async loadScholarships(){
+      this.scholarships = await data.default.getScholarships();
     }
   },
   data: () => ({

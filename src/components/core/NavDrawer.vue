@@ -56,7 +56,7 @@
 
 <script>
 // Utilities
-import { mapMutations, mapState } from "vuex";
+import { mapMutations, mapState } from 'vuex'
 
 export default {
   props: {
@@ -68,47 +68,47 @@ export default {
   data: () => ({
     links: [
       {
-        route: "/",
-        icon: "dashboard",
-        text: "Dashboard"
+        route: '/',
+        icon: 'dashboard',
+        text: 'Dashboard'
       },
       {
-        route: "/profile",
-        icon: "account_box",
-        text: "Profile"
+        route: '/profile',
+        icon: 'account_box',
+        text: 'Profile'
       },
       {
-        route: "/scholarships",
-        icon: "school",
-        text: "Scholarships"
+        route: '/scholarships',
+        icon: 'school',
+        text: 'Scholarships'
       },
       {
-        route: "/templates",
-        icon: "border_color",
-        text: "Templates"
+        route: '/templates',
+        icon: 'border_color',
+        text: 'Templates'
       },
       {
-        route: "/settings",
-        icon: "settings",
-        text: "Settings"
+        route: '/settings',
+        icon: 'settings',
+        text: 'Settings'
       }
     ]
   }),
 
   computed: {
-    ...mapState("app", ["image", "color"]),
+    ...mapState('app', ['image', 'color']),
     inputValue: {
-      get() {
-        return this.$store.state.app.drawer;
+      get () {
+        return this.$store.state.app.drawer
       },
-      set(val) {
-        this.setDrawer(val);
+      set (val) {
+        this.setDrawer(val)
       }
     }
   },
 
   methods: {
-    ...mapMutations("app", ["setDrawer", "toggleDrawer"])
+    ...mapMutations('app', ['setDrawer', 'toggleDrawer'])
   }
-};
+}
 </script>
