@@ -1,11 +1,12 @@
 <template>
     <v-container>
       <v-card>
-        <v-container class="py-0">
+        <v-container class="py-0" transition="slide-x-transition">
           <v-subheader>Personal Information</v-subheader>
           <v-divider class="v-div" :inset="true"></v-divider>
           <v-col cols="12">
-              <p>Birthday: <span>{{birthday}}</span></p>
+              <p>I Am A: <span>{{iAmA}}</span></p>
+              <p>Student Birthday: <span>{{birthday}}</span></p>
               <p>Gender: <span>{{gender}}</span></p>
               <p>Citizenship: <span>{{citizenship}}</span></p>
               <p>Disabilities: <span>{{disabilities}}</span></p>
@@ -15,6 +16,7 @@
               <p>Career Objectives: <span>{{career}}</span></p>
               <p>Academic Honors: <span>{{honors}}</span></p>
               <p>Educational Experiences:<span>{{education}}</span></p>
+
           </v-col>
           <v-col cols="12" class="text-right">
             <v-btn class="edit-btn" @click="updatePersonalInfoSurvey" v-show="displayEdit">Edit</v-btn>
@@ -41,7 +43,7 @@
         <v-card>
           <v-container class="py-0">
 <v-subheader >Education</v-subheader>
-          <v-divider class="v-div" :inset="true"></v-divider>
+          <v-divider class="v-div" inset></v-divider>
           <v-col cols="12">
               <p>High School Graduation Year: <span>{{highSchoolGraduationYear}}</span></p>
               <p>SAT Math Score: <span>{{math}}</span></p>
@@ -51,6 +53,7 @@
               <p>Currently Enrolled: <span>{{enrolled}}</span></p>
               <p>Transfer Within A Year: <span>{{transfer}}</span></p>
               <p>College Graduation Year: <span>{{collegeGraduationYear}}</span></p>
+                <p>Previous Funding Received:<span>{{prevFundingReceived}}</span></p>
           </v-col>
           <v-col cols="12" class="text-right">
             <v-btn class="edit-btn" v-show="displayEdit" @click="updateEducationSurvey">Edit</v-btn>
@@ -88,6 +91,7 @@ export default {
     }
   },
   computed: mapState({
+    iAmA: state => state.profile.personalInfo.iAmA,
     gender: state => state.profile.personalInfo.gender,
     birthday: state => state.profile.personalInfo.birthday,
     citizenship: state => state.profile.personalInfo.citizenship,
@@ -106,42 +110,42 @@ export default {
     enrolled: state => state.profile.education.enrolled,
     transfer: state => state.profile.education.transfer,
     collegeGraduationYear: state => state.profile.education.collegeGraduationYear,
-      memberships: (state) => state.profile.parentInfo.memberships,
+    memberships: (state) => state.profile.parentInfo.memberships,
     parentEmployer: (state) => state.profile.parentInfo.employer,
     occupation: (state) => state.profile.parentInfo.occupation,
     militaryParent: (state) => state.profile.parentInfo.military,
-     fraternity: state => state.profile.studentActivities.fraternity,
+    fraternity: state => state.profile.studentActivities.fraternity,
     militaryStudent: state => state.profile.studentActivities.military,
     sorority: state => state.profile.studentActivities.sorority,
     sports: state => state.profile.studentActivities.sports,
     perform: state => state.profile.studentActivities.perform,
-    studentEmployer: state => state.profile.studentActivities.employer
+    studentEmployer: state => state.profile.studentActivities.employer,
+    prevFundingReceived: state => state.profile.education.prevFundingReceived
 
   }),
   methods: {
-    submit() {
+    submit () {
       // update method
       console.log('submit')
-      this.displayEdit = false;
-      this.$emit('submit');
+      this.displayEdit = false
+      this.$emit('submit')
     },
-    updateEducationSurvey(){
-      console.log('updating education');
-        this.$emit('selectComponent', 'Education');
+    updateEducationSurvey () {
+      console.log('updating education')
+      this.$emit('selectComponent', 'Education')
     },
-     updateParentInfoSurvey(){
-      console.log('updating parentInfo');
-        this.$emit('selectComponent', 'ParentInfo');
-
+    updateParentInfoSurvey () {
+      console.log('updating parentInfo')
+      this.$emit('selectComponent', 'ParentInfo')
     },
-    updatePersonalInfoSurvey(){
-      console.log('updating personalInfo');
-        this.$emit('selectComponent', 'PersonalInfo');
+    updatePersonalInfoSurvey () {
+      console.log('updating personalInfo')
+      this.$emit('selectComponent', 'PersonalInfo')
     },
-    updateStudentActivitiesSurvey(){
-      console.log('updating student activities');
-        this.$emit('selectComponent', 'StudentActivities');
-    },
+    updateStudentActivitiesSurvey () {
+      console.log('updating student activities')
+      this.$emit('selectComponent', 'StudentActivities')
+    }
   }
 }
 </script>
@@ -163,7 +167,7 @@ span {
 }
 .edit-btn{
    color: white;
-  background: #5097dd !important;
+  background: #6200ea !important;
 }
 
 </style>
