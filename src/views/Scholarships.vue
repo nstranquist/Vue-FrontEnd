@@ -22,16 +22,21 @@
 </template>
 
 <script>
-import axios from "axios";
-
+import * as data from '../data'
 export default {
-  name: "scholarships",
-  results: [],
+  name: 'scholarships',
+  scholarships: '',
+   results: [],
   loading: true,
-  error: false,
+  async created(){
+    await this.loadScholarships();
+  },
   methods: {
-    toggleRoute(id) {
+  toggleRoute(id) {
       this.$router.push(`/scholarships/${id}`);
+    },
+    async loadScholarships(){
+      this.scholarships = await data.default.getScholarships();
     }
   },
   mounted() {

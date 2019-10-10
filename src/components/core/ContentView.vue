@@ -10,6 +10,6 @@
 
 <script>
 export default {
-  name: "ContentView"
-};
+  name: 'ContentView'
+}
 </script>

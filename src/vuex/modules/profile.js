@@ -1,5 +1,6 @@
 const state = {
   personalInfo: {
+    iAmA: '',
     gender: '',
     birthday: '',
     citizenship: '',
@@ -28,7 +29,8 @@ const state = {
     college: '',
     collegeGraduationYear: '',
     highSchool: '',
-    gpa: ''
+    gpa: '',
+    prevFundingReceived: ''
   },
   studentActivities: {
     fraternity: '',
