@@ -88,9 +88,24 @@ export default {
         text: 'Templates'
       },
       {
-        route: '/settings',
-        icon: 'settings',
-        text: 'Settings'
+        route: "",
+        icon: "",
+        text: "------------------------"
+      },
+      {
+        route: "/housing",
+        icon: "home",
+        text: "Housing"
+      },
+      {
+        route: "/schools",
+        icon: "star",
+        text: "Schools"
+      },
+      {
+        route: "/settings",
+        icon: "settings",
+        text: "Settings"
       }
     ]
   }),
