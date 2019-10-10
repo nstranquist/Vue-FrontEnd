@@ -73,7 +73,7 @@
             <h4 class="content-section-header">Completed</h4>
             <v-card>
               <v-list dense class="application-list-container">
-                <v-list-item v-for="(item, i) in completedApps" :key="i" @click>
+                <v-list-item v-for="(item, i) in completedApps" :key="i" >
                   <v-list-item-title v-text="item.text" class="list-item"></v-list-item-title>
                 </v-list-item>
               </v-list>

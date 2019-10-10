@@ -38,6 +38,11 @@
     border: 2px;
 }
 
+ .form-update-btn {
+  color: white !important;
+  background: #6200ea !important;
+}
+
 
 .form button {
     display:block;
@@ -58,6 +63,11 @@
         margin: auto;
         width: 25rem;
     }
+}
+
+.py-0 {
+  border: 1px solid #6200ea ;
+  border-radius: 5px;
 }
 
 

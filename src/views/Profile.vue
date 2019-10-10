@@ -16,18 +16,18 @@
 
       <v-tab-item>
         <h1 class="content-section-header">View Profile</h1>
-        <v-container>
+        <v-container class="py-0">
           <v-row>
             <v-col cols="12" md="4">
-              <p>First Name: {{firstname}}</p>
-              <p>Last Name:{{lastname}}</p>
-              <p>High School:{{highSchool}}</p>
-              <p>Graduation Date:{{highSchoolGraduationDate}}</p>
-              <p>GPA:{{gpa}}</p>
-              <p>ACT:{{act}}</p>
-              <p>Race:</p>
-              <p>Ethnicity:</p>
-              <p>Religion:{{religion}}</p>
+              <p>First Name: <span>{{firstname}}</span></p>
+              <p>Last Name:<span>{{lastname}}</span></p>
+              <p>High School:<span>{{highSchool}}</span></p>
+              <p>Graduation Date:<span>{{highSchoolGraduationDate}}</span></p>
+              <p>GPA:<span>{{gpa}}</span></p>
+              <p>ACT:<span>{{act}}</span></p>
+              <p>Race:<span></span></p>
+              <p>Ethnicity<span></span>:</p>
+              <p>Religion:<span>{{religion}}</span></p>
             </v-col>
           </v-row>
         </v-container>
@@ -89,7 +89,31 @@
       </v-tab-item>
       <v-tab-item>
         <h1 class="content-section-header">Profile Survey</h1>
-        <v-container> <ProfileSurvey></ProfileSurvey></v-container>
+        <v-container> <Education
+     :displayBtn ="displayBtn"
+    v-show="selectedComponent === 'Education'"
+     @selectComponent="switchComponent" >
+    </Education>
+    <ParentInfo
+     :displayBtn ="displayBtn"
+    v-show="selectedComponent === 'ParentInfo'"
+    @selectComponent="switchComponent" >
+    </ParentInfo>
+    <StudentActivities
+     :displayBtn ="displayBtn"
+    v-show="selectedComponent === 'StudentActivities'"
+      @selectComponent="switchComponent" >
+    </StudentActivities>
+    <PersonalInfo
+    v-show="selectedComponent === 'PersonalInfo'"
+      :displayBtn ="displayBtn"
+    @selectComponent="switchComponent" >
+    </PersonalInfo>
+     <DisplayProfileSurvey
+    v-show="selectedComponent === 'DisplayProfileSurvey'"
+    @selectComponent="switchComponent" @submit ="submitSurvey">
+    </DisplayProfileSurvey>
+</v-container>
       </v-tab-item>
     </v-tabs>
   </v-card>
@@ -159,29 +183,38 @@
 import { mapState } from 'vuex'
 export default {
   components: {
-    ProfileSurvey: () => import('@/components/profile/ProfileSurvey')
+    // ProfileSurvey: () => import('@/components/profile/ProfileSurvey')
+    Education: () => import('@/components/profile/Education'),
+    ParentInfo: () => import('@/components/profile/ParentInfo'),
+    PersonalInfo: () => import('@/components/profile/PersonalInfo'),
+    StudentActivities: () => import('@/components/profile/StudentActivities'),
+    DisplayProfileSurvey: () => import('@/components/profile/DisplayProfileSurvey')
   },
-  data() {
+  data () {
     return {
-       accountInfo: {
-         firstname: '',
-          lastname: '',
-          password: '',
-          email: '',
-          address: '',
-          phone: '',
-          city: '',
-          zipcode: ''
+      accountInfo: {
+        firstname: '',
+        lastname: '',
+        password: '',
+        email: '',
+        address: '',
+        phone: '',
+        city: '',
+        zipcode: ''
       },
       education: {
         highSchoolGraduationDate: '',
-         act: '',
-      highSchool: '',
-      gpa:''
-      }
-      }
-    },
-     computed:
+        act: '',
+        highSchool: '',
+        gpa: ''
+      },
+    selectedComponent: 'PersonalInfo',
+    updatedSurveyComponent: '',
+    isDisplayProfileComponent: false,
+    displayBtn: true
+    }
+  },
+  computed:
         mapState({
           firstname: state => state.accountInformation.accountInfo.firstname,
           lastname: state => state.accountInformation.accountInfo.lastname,
@@ -191,16 +224,29 @@ export default {
           highSchoolGraduationDate: state => state.profile.education.highSchoolGraduationDate,
           religion: state => state.profile.personalInfo.religion
         }),
-        methods: {
-       updateProfile() {
+  methods: {
+    updateProfile () {
       // set data
-      this.$store.commit("updateAccountInfo", this.accountInfo);
-        this.$store.commit("updateEducation", this.education);
+      this.$store.commit('updateAccountInfo', this.accountInfo)
+      this.$store.commit('updateEducation', this.education)
 
-      console.log(this.$store.getters.getAccountInfo.firstname);
-    }
+      console.log(this.$store.getters.getAccountInfo.firstname)
+    },
+        switchComponent (nextComponent) {
+      console.log('nextComponent: ' + nextComponent)
+      this.selectedComponent = nextComponent;
+
+      if (this.selectedComponent === 'DisplayProfileSurvey'){
+          this.displayBtn = false;
+      }
+    },
+    submitSurvey(){
+       console.log('survey submitted ')
+         //submit data to backend
+ }
+
   }
-  }
+}
 
 </script>
 
@@ -211,8 +257,5 @@ h1.text-center {
 .py-0 {
   border: 1px solid #6200ea;
 }
-.py-0 .form-update-btn {
-  color: white;
-  background: #5097dd !important;
-}
+
 </style>

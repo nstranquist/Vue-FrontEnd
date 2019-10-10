@@ -1,8 +1,8 @@
 <template>
-  <v-container>
-          <v-card>
+  <v-container class="py-0">
+          <v-card flat>
             <v-form>
-              <v-container class="py-0">
+              <v-container>
                 <h3 class="title-heading">Student Activities</h3>
                 <v-row>
                    <v-col cols="12" md="3">
@@ -29,11 +29,13 @@
                       label="Military"
                     ></v-select>
                   </v-col>
-                  <v-col cols="12" class="text-center">
-                    <v-btn  v-show="displayBtn" @click="clickPrevious('Education')">Previous</v-btn>
-                     <v-btn  v-show="displayBtn" @click="updateSurvey('updateStudentActivities', activities)" >Save</v-btn>
-                    <v-btn  v-show="displayBtn" @click="clickNext('ParentInfo')">Next</v-btn>
-                    <v-btn v-show="!displayBtn" class="form-update-btn" @click="updateSurvey('updateStudentActivities', activities)">Update</v-btn>
+                  <v-col cols="12" class="text-center"  v-show="displayBtn">
+                    <v-btn   class="form-update-btn ma-2" @click="clickPrevious('Education')">Prev</v-btn>
+                     <v-btn  class="form-update-btn" @click="updateSurvey('updateStudentActivities', activities)" >Save</v-btn>
+                    <v-btn class="form-update-btn ma-2" @click="clickNext('ParentInfo')">Next</v-btn>
+                  </v-col>
+                   <v-col cols="12" class="text-center" v-show="!displayBtn">
+                   <v-btn class="form-update-btn" @click="updateSurvey('updateStudentActivities', activities)">Update</v-btn>
                   </v-col>
                 </v-row>
               </v-container>
@@ -44,15 +46,12 @@
 
 <script>
 import * as data from '../../data'
-import {profileSurveyMixins} from '../../mixins/profileSurveyMixins.js'
+import { profileSurveyMixins } from '../../mixins/profileSurveyMixins.js'
 
 export default {
   mixins: [profileSurveyMixins],
   components: {
   },
-  //  props: {
-  //  displayBtn: Boolean
-  // },
   data () {
     return {
       military: data.default.military,
@@ -68,27 +67,6 @@ export default {
     }
   },
   methods: {
-    // setStudentActivities () {
-    //   // set data
-    //   this.$store.commit('updateStudentActivities', this.activities);
-    //     if(!this.displayBtn){
-    //          this.returnToDisplayProfileSurvey();
-    //     }
-    // },
-    // clickNext () {
-    //   console.log(this.$store.getters.getStudentActivities)
-    //   this.selectComponent('ParentInfo');
-    // },
-    // clickPrevious () {
-    //   this.selectComponent('Education');
-    // },
-    // selectComponent (componentName) {
-    //   this.$emit('selectComponent', componentName);
-    // },
-    //    returnToDisplayProfileSurvey(){
-    //     console.log('return to display')
-    //     this.$emit('selectComponent', 'DisplayProfileSurvey');
-    // }
   }
 }
 </script>
