@@ -8,6 +8,7 @@ import ScholarshipDetail from './views/ScholarshipDetail.vue'
 import Templates from './views/Templates.vue'
 import TemplateItem from './views/TemplateItem.vue'
 import Housing from './views/Housing.vue'
+import HousingDetail from './views/HousingDetail.vue'
 import Settings from './views/Settings.vue'
 import Upgrade from './views/Upgrade.vue'
 // import SignIn from './views/SignIn.vue'
@@ -58,6 +59,11 @@ export default new Router({
       path: '/housing',
       name: 'Housing',
       component: Housing
+    },
+    {
+      path: '/housing/:id',
+      name: 'Housing Detail',
+      component: HousingDetail
     },
     {
       path: '/settings',
