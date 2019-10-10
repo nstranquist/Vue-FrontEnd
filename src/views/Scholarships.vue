@@ -16,12 +16,14 @@ import * as data from '../data'
 export default {
   name: 'scholarships',
   scholarships: '',
+   results: [],
+  loading: true,
   async created(){
     await this.loadScholarships();
   },
   methods: {
-    toggleRoute () {
-      this.$router.push('/scholarships/4');
+  toggleRoute(id) {
+      this.$router.push(`/scholarships/${id}`);
     },
     async loadScholarships(){
       this.scholarships = await data.default.getScholarships();
