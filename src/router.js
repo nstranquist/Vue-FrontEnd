@@ -45,7 +45,8 @@ export default new Router({
     {
       path: '/scholarships/:id',
       name: 'Scholarship Detail',
-      component: ScholarshipDetail
+      component: ScholarshipDetail,
+      props: r => ({ id: parseInt(r.params.id) })
     },
     {
       path: '/templates',
