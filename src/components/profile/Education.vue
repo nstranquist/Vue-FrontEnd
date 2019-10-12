@@ -79,11 +79,11 @@
                   </v-col>
                   <v-col cols="12" class="text-center">
                     <v-btn v-show="displayBtn"  class="form-update-btn ma-2" @click="clickPrevious('PersonalInfo')">Prev</v-btn>
-                     <v-btn v-show="displayBtn"  class="form-update-btn"  @click="updateSurvey('updateEducation', education)">Save</v-btn>
+                     <v-btn v-show="displayBtn"  class="form-update-btn"  @click="updateSurvey('updateEducationAction', education)">Save</v-btn>
                     <v-btn v-show="displayBtn"   class="form-update-btn ma-2" @click="clickNext('StudentActivities')">Next</v-btn>
                   </v-col>
                     <v-col cols="12" class="text-center" v-show="!displayBtn" >
-                    <v-btn class="form-update-btn" @click="updateSurvey('updateEducation', education)">Update</v-btn>
+                    <v-btn class="form-update-btn" @click="updateSurvey('updateEducationAction', education)">Update</v-btn>
                   </v-col>
 
                 </v-row>
@@ -129,7 +129,7 @@ export default {
       return this.satScoreList;
     },
     actScores () {
-      Object.assign(this.actScoreList, this.calculateScores(801, 200));
+      Object.assign(this.actScoreList, this.calculateScores(37, 1));
       return this.actScoreList;
     },
     graduationYear () {

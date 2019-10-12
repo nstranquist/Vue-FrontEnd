@@ -30,11 +30,11 @@
                   </v-col>
                   <v-col cols="12" class="text-center">
                     <v-btn  v-show="displayBtn"  class="form-update-btn ma-2"  @click="clickPrevious('StudentActivities')">Prev</v-btn>
-                    <v-btn v-show="displayBtn"   class="form-update-btn" @click="updateSurvey('updateParentInfo', parentInfo)">Save</v-btn>
+                    <v-btn v-show="displayBtn"   class="form-update-btn" @click="updateSurvey('updateParentInfoAction', parentInfo)">Save</v-btn>
                     <v-btn v-show="displayBtn"   class="form-update-btn ma-2" @click="completed">Done</v-btn>
                   </v-col>
                     <v-col cols="12" class="text-center" v-show="!displayBtn">
-                     <v-btn  class="form-update-btn" @click="updateSurvey('updateParentInfo', parentInfo)">Update</v-btn>
+                     <v-btn  class="form-update-btn" @click="updateSurvey('updateParentInfoAction', parentInfo)">Update</v-btn>
                   </v-col>
 
                 </v-row>

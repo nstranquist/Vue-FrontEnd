@@ -1,3 +1,4 @@
+/* eslint-disable semi */
 const state = {
   personalInfo: {
     iAmA: '',
@@ -44,35 +45,48 @@ const state = {
 
 const mutations = {
   updatePersonalInfo (state, personalInfo) {
-    Object.assign(state.personalInfo, personalInfo)
+    Object.assign(state.personalInfo, personalInfo);
   },
   updateParentInfo (state, parentInfo) {
-    Object.assign(state.parentInfo, parentInfo)
+    Object.assign(state.parentInfo, parentInfo);
   },
   updateEducation (state, education) {
-    Object.assign(state.education, education)
+
+    Object.assign(state.education, education);
   },
   updateStudentActivities (state, studentActivities) {
-    Object.assign(state.studentActivities, studentActivities)
+    Object.assign(state.studentActivities, studentActivities);
   }
 }
 
-// const actions = {
+const actions = {
+  async updatePersonalInfoAction ({ commit }, personalInfo) {
+    commit('updatePersonalInfo', personalInfo);
+  },
+  async updateParentInfoAction ({ commit }, parentInfo) {
+    commit('updateParentInfo', parentInfo);
+  },
+  async updateEducationAction ({ commit }, education) {
+    commit('updateEducation', education);
+  },
+  async updateStudentActivitiesAction ({ commit }, studentActivities) {
+    commit('updateStudentActivities', studentActivities);
+  }
 
-// }
+}
 
 const getters = {
   getPersonalInfo: state => {
-    return state.personalInfo
+    return state.personalInfo;
   },
   getParentInfo: state => {
-    return state.parentInfo
+    return state.parentInfo;
   },
   getEducation: state => {
-    return state.education
+    return state.education;
   },
   getStudentActivities: state => {
-    return state.studentActivities
+    return state.studentActivities;
   }
 
 }
@@ -80,5 +94,6 @@ const getters = {
 export default {
   state,
   mutations,
-  getters
+  getters,
+  actions
 }
