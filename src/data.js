@@ -1,5 +1,4 @@
 /* eslint-disable semi */
-import * as axios from 'axios';
 const months = [
   'January', 'February', 'March', 'April',
   'May', 'June', 'July', 'August', 'September',
@@ -239,11 +238,6 @@ const iAmA = [
   'Parnet'
 ]
 
-const getScholarships = async function () {
-  const response = await axios.get('https://us-central1-edurain.cloudfunctions.net/api/scholarships'); // limit 50
-  const scholarships = response.data;
-  console.log(scholarships);
-}
 export default {
   months,
   majors,
@@ -255,6 +249,5 @@ export default {
   currentSchoolYear,
   yearScholarshipNeeded,
   citizenship,
-  iAmA,
-  getScholarships
+  iAmA
 }
