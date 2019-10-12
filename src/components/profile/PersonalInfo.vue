@@ -187,7 +187,7 @@ export default {
       setBirthday += this.selectedYear
       this.personalInfo.birthday = setBirthday
 
-      this.updateSurvey('updatePersonalInfo', this.personalInfo)
+      this.updateSurvey('updatePersonalInfoAction', this.personalInfo)
     }
   }
 }

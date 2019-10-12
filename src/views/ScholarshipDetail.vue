@@ -8,8 +8,9 @@
             <v-col cols="12">
               <p>Scholarship Description: <span>{{selectedScholarship.requirements}}</span></p>
               <p>Scholarship Organization: <span>{{'need organization'}}</span></p>
-              <p>GPA Min: <span>{{0}}</span></p>
-              <p>ACT Min:<span>{{0}}</span></p>
+              <p>Contact: <span>{{selectedScholarship.contact}}</span></p>
+              <p>GPA Min: <span>{{4.0}}</span></p>
+              <p>ACT Min: <span>{{36}}</span></p>
               <p>Other Parameters:</p>
             </v-col>
             <v-col cols="12" class="text-center">
