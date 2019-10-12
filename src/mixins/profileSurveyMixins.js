@@ -5,7 +5,7 @@ export const profileSurveyMixins = {
   methods: {
     updateSurvey (updateComponent, setData) {
       // set data
-      this.$store.commit(updateComponent, setData)
+      this.$store.dispatch(updateComponent, setData)
 
       if (!this.displayBtn) {
         this.returnToDisplayProfileSurvey()
