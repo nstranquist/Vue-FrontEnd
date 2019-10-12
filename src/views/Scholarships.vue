@@ -1,20 +1,21 @@
 <template>
   <v-container class="page-scholarships" fill-height fluid grid-list-xl>
     <v-row justify="center">
-      <v-col cols="12">
+       <v-col cols="12">
         <h1 class="content-section-header">Scholarships</h1>
-        <v-card>
+        <!-- <v-card>
           <ul id="scholarships">
-            <li v-for="item in results" v-bind:key="item.id">
+            <li v-for="item in items" v-bind:key="item.id">
               <h3>{{item.name}}</h3>
               <p>Deadline: {{item.deadline}}</p>
               <p>Requirements: {{item.requirements}}</p>
               <p>Contact: {{item.contact}}</p>
             </li>
           </ul>
-        </v-card>
+        </v-card> -->
         <v-card>
-          <v-data-table :headers="headers" :items="items" click:row="toggleRoute(:item)" />
+          <v-data-table :headers="headers" :items="scholarshipList" item-key="id"  @click:row="toggleRoute">
+          </v-data-table>
         </v-card>
       </v-col>
     </v-row>
@@ -23,35 +24,24 @@
 
 <script>
 import * as data from '../data'
+import {mapActions, mapGetters, mapState} from 'vuex'
 export default {
   name: 'scholarships',
   scholarships: '',
-   results: [],
+  results: [],
   loading: true,
-  async created(){
-    await this.loadScholarships();
-  },
+  computed:
+    mapState({
+      scholarshipList: state => state.scholarships.scholarships,
+    }),
   methods: {
-  toggleRoute(id) {
-      this.$router.push(`/scholarships/${id}`);
+    ...mapActions(['getScholarshipsAction']),
+     toggleRoute(value) {
+       this.$router.push(`/scholarships/${value.id}`);
     },
-    async loadScholarships(){
-      this.scholarships = await data.default.getScholarships();
-    }
+
   },
   mounted() {
-    axios
-      .get("https://us-central1-edurain.cloudfunctions.net/api/scholarships")
-      .then(resp => {
-        console.log(resp);
-        console.log("response: " + resp.data);
-        this.results = resp.data;
-      })
-      .catch(err => {
-        console.log(err);
-        this.error = true;
-      })
-      .finally(() => (this.loading = false));
   },
   filters: {
     // filter functions for incoming data here
@@ -70,8 +60,8 @@ export default {
       },
       {
         sortable: false,
-        text: "Amount",
-        value: "amount"
+        text: "Award",
+        value: "award"
       },
       {
         sortable: false,
@@ -80,31 +70,8 @@ export default {
       },
       {
         sortable: false,
-        text: "Due Date",
-        value: "date"
-      }
-    ],
-    items: [
-      {
-        name: "First Scholarship",
-        organization: "Balsa Foundation",
-        amount: "2,000",
-        type: "Essay",
-        date: "Sep. 8"
-      },
-      {
-        name: "Second Scholarship",
-        organization: "Washington University",
-        amount: "2,000",
-        type: "Essay",
-        date: "Sep. 8"
-      },
-      {
-        name: "Third Scholarship",
-        organization: "Tech Artista",
-        amount: "2,000",
-        type: "Essay",
-        date: "Sep. 8"
+        text: "Deadline",
+        value: "deadline"
       }
     ]
   })

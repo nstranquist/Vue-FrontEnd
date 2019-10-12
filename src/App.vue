@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import * as axios from 'axios'
+
 export default {
   components: {
     NavDrawer: () => import('@/components/core/NavDrawer'),
@@ -18,6 +20,7 @@ export default {
   },
   data () {
     return {
+      loading: true,
       items: [
         { route: '/', title: 'Dashboard', icon: 'dashboard' },
         { route: '/profile', title: 'Profile', icon: 'account_box' },
@@ -27,6 +30,20 @@ export default {
       ]
     }
   },
+  created(){
+       axios.get("https://us-central1-edurain.cloudfunctions.net/api/scholarships")
+                .then(resp => {
+                  console.log(resp);
+                  this.$store.dispatch('getScholarshipsAction', resp.data);
+                  console.log(this.scholarshipList);
+                  this.loading = false;
+                })
+                .catch(err => {
+                  console.log(err);
+                  this.error = true;
+                })
+                .finally(() => (this.loading = false));
+             },
   methods: {
     pushRoute (routeName) {
       this.$router.push(routeName)
