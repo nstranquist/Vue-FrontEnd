@@ -45,7 +45,7 @@
       <v-list nav>
         <v-list-item to="/upgrade">
           <v-list-item-action>
-            <v-icon>star</v-icon>
+            <v-icon>mdi-arrow-up-bold-circle</v-icon>
           </v-list-item-action>
           <v-list-item-title class="font-weight-light">Upgrade</v-list-item-title>
         </v-list-item>
@@ -99,7 +99,7 @@ export default {
       },
       {
         route: "/schools",
-        icon: "star",
+        icon: "mdi-book-open-page-variant",
         text: "Schools"
       },
       {

@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import * as data from '../../data'
+import data, {military} from '../../data'
 import { profileSurveyMixins } from '../../mixins/profileSurveyMixins.js'
 
 export default {
@@ -54,7 +54,7 @@ export default {
   },
   data () {
     return {
-      military: data.default.military,
+      military: data.military,
       items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       parentInfo: {
         memberships: '',
