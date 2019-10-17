@@ -1,10 +1,4 @@
 /* eslint-disable semi */
-const months = [
-  'January', 'February', 'March', 'April',
-  'May', 'June', 'July', 'August', 'September',
-  'October', 'November', 'December'
-]
-
 const genders = [
   'Female',
   'Male',
@@ -237,17 +231,19 @@ const iAmA = [
   'Student',
   'Parnet'
 ]
-
-export default {
-  months,
+const data = {
   majors,
   genders,
   educationalExperiences,
-  military,
   disabilities,
-  gpa,
   currentSchoolYear,
   yearScholarshipNeeded,
   citizenship,
   iAmA
+}
+
+export {
+  data as default,
+  military,
+  gpa
 }
