@@ -119,7 +119,7 @@
         </v-container>
 </template>
   <script>
-    import * as data from '../../data'
+    import data from '../../data'
     import { profileSurveyMixins } from '../../mixins/profileSurveyMixins.js'
 
     export default {
@@ -129,14 +129,14 @@
       data () {
         return {
           items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-          genders: data.default.genders,
-          majors: data.default.majors,
-          disabilities: data.default.disabilities,
-          educationalExperiences: data.default.educationalExperiences,
-          yearScholarshipNeeded: data.default.yearScholarshipNeeded,
-          currentSchoolYear: data.default.currentSchoolYear,
-          citizenship: data.default.citizenship,
-          iAmA: data.default.iAmA,
+          genders: data.genders,
+          majors: data.majors,
+          disabilities: data.disabilities,
+          educationalExperiences: data.educationalExperiences,
+          yearScholarshipNeeded: data.yearScholarshipNeeded,
+          currentSchoolYear: data.currentSchoolYear,
+          citizenship: data.citizenship,
+          iAmA: data.iAmA,
           menu: false,
           personalInfo: {
             iAmA: '',
