@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import * as firebase from 'firebase'
+// import views
 import Dashboard from './views/Dashboard.vue'
 import Profile from './views/Profile.vue'
 import Schools from './views/Schools.vue'
@@ -11,20 +13,35 @@ import Housing from './views/Housing.vue'
 import HousingDetail from './views/HousingDetail.vue'
 import Settings from './views/Settings.vue'
 import Upgrade from './views/Upgrade.vue'
-// import SignIn from './views/SignIn.vue'
-// import SignUp from './views/SignUp.vue'
+import SignIn from './views/SignIn.vue'
+import Register from './views/Register.vue'
 
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '*',
+      redirect: '/'
+    },
+    {
+      path: '/login',
+      name: 'LogIn',
+      component: SignIn,
+      //meta: { guest: true }
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
+    },
+    {
       path: '/',
-      // redirect
-      name: 'Home',
-      component: Dashboard
+      name: 'Dashboard',
+      component: Dashboard,
+      //meta: { auth: true }
     },
     {
       path: '/profile',
@@ -84,3 +101,35 @@ export default new Router({
     }
   ]
 })
+
+
+/*router.beforeEach((to, from, next) => {
+
+  if (to.matched.some(record => record.meta.auth)) {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        next()
+      } else {
+        next({
+          path: "/login",
+        })
+      }
+    })
+  } else if (to.matched.some(record => record.meta.guest)) {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        next({
+          path: "/",
+        })
+      } else {
+        next()
+      }
+    })
+
+  } else {
+    next()
+  }
+
+})*/
+
+export default router

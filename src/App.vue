@@ -9,47 +9,48 @@
 </template>
 
 <script>
-import * as axios from 'axios'
+import * as axios from "axios";
 
 export default {
   components: {
-    NavDrawer: () => import('@/components/core/NavDrawer'),
-    Footer: () => import('@/components/core/Footer'),
-    AppBar: () => import('@/components/core/AppBar'),
-    ContentView: () => import('@/components/core/ContentView')
+    NavDrawer: () => import("@/components/NavDrawer"),
+    Footer: () => import("@/components/Footer"),
+    AppBar: () => import("@/components/AppBar"),
+    ContentView: () => import("@/components/ContentView")
   },
-  data () {
+  data() {
     return {
       loading: true,
       items: [
-        { route: '/', title: 'Dashboard', icon: 'dashboard' },
-        { route: '/profile', title: 'Profile', icon: 'account_box' },
-        { route: '/scholarships', title: 'Scholarships', icon: 'school' },
-        { route: '/templates', title: 'Templates', icon: 'border_color' },
-        { route: '/settings', title: 'Settings', icon: 'settings' }
+        { route: "/", title: "Dashboard", icon: "dashboard" },
+        { route: "/profile", title: "Profile", icon: "account_box" },
+        { route: "/scholarships", title: "Scholarships", icon: "school" },
+        { route: "/templates", title: "Templates", icon: "border_color" },
+        { route: "/settings", title: "Settings", icon: "settings" }
       ]
-    }
+    };
   },
-  created(){
-       axios.get("https://us-central1-edurain.cloudfunctions.net/api/scholarships")
-                .then(resp => {
-                  console.log(resp);
-                  this.$store.dispatch('getScholarshipsAction', resp.data);
-                  console.log(this.scholarshipList);
-                  this.loading = false;
-                })
-                .catch(err => {
-                  console.log(err);
-                  this.error = true;
-                })
-                .finally(() => (this.loading = false));
-             },
+  created() {
+    axios
+      .get("https://us-central1-edurain.cloudfunctions.net/api/scholarships")
+      .then(resp => {
+        console.log(resp);
+        this.$store.dispatch("getScholarshipsAction", resp.data);
+        console.log(this.scholarshipList);
+        this.loading = false;
+      })
+      .catch(err => {
+        console.log(err);
+        this.error = true;
+      })
+      .finally(() => (this.loading = false));
+  },
   methods: {
-    pushRoute (routeName) {
-      this.$router.push(routeName)
+    pushRoute(routeName) {
+      this.$router.push(routeName);
     }
   }
-}
+};
 </script>
 
 <style>
