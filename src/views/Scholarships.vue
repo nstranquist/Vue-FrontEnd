@@ -14,7 +14,7 @@
           </ul>
         </v-card> -->
         <v-card>
-          <v-data-table :headers="headers" :items="scholarshipList" item-key="id"  @click:row="toggleRoute">
+          <v-data-table  :loading="loading" :headers="headers" :items="scholarshipList" item-key="id"  @click:row="toggleRoute">
           </v-data-table>
         </v-card>
       </v-col>
@@ -24,12 +24,27 @@
 
 <script>
 import * as data from '../data'
+import * as axios from 'axios'
+
 import {mapActions, mapGetters, mapState} from 'vuex'
 export default {
   name: 'scholarships',
   scholarships: '',
   results: [],
-  loading: true,
+      created(){
+       axios.get("https://us-central1-edurain.cloudfunctions.net/api/scholarships")
+                .then(resp => {
+                  console.log(resp);
+                  this.$store.dispatch('getScholarshipsAction', resp.data);
+                  console.log(this.scholarshipList);
+                  this.loading = false;
+                })
+                .catch(err => {
+                  console.log(err);
+                  this.error = true;
+                })
+                .finally(() => (this.loading = false));
+             },
   computed:
     mapState({
       scholarshipList: state => state.scholarships.scholarships,
@@ -41,12 +56,11 @@ export default {
     },
 
   },
-  mounted() {
-  },
   filters: {
     // filter functions for incoming data here
   },
   data: () => ({
+      loading: true,
     headers: [
       {
         sortable: false,
@@ -75,7 +89,7 @@ export default {
       }
     ]
   })
-};
+}
 </script>
 
 <style scoped>

@@ -7,11 +7,11 @@
             <h1 class="content-section-header">{{selectedScholarship.name}}</h1>
             <v-col cols="12">
               <p>Scholarship Description: <span>{{selectedScholarship.requirements}}</span></p>
-              <p>Scholarship Organization: <span>{{'need organization'}}</span></p>
+              <p>Scholarship Organization: <span>{{'N/A'}}</span></p>
               <p>Contact: <span>{{selectedScholarship.contact}}</span></p>
-              <p>GPA Min: <span>{{4.0}}</span></p>
+              <p>GPA Min: <span>{{'4.0'}}</span></p>
               <p>ACT Min: <span>{{36}}</span></p>
-              <p>Other Parameters:</p>
+              <!-- <p>Other Parameters:</p> -->
             </v-col>
             <v-col cols="12" class="text-center">
               <v-btn to="/templates/0" color="blue-grey" class="apply-btn">Apply</v-btn>
@@ -40,6 +40,7 @@ export default {
       const scholarshipList = this.$store.getters.getScholarshipList;
       const scholarship = scholarshipList.filter(s => s.id === id);
       Object.assign(this.selectedScholarship, scholarship[0] );
+      console.log(scholarship[0])
       return this.selectedScholarship;
   }
   }

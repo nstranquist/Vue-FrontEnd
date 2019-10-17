@@ -35,19 +35,27 @@ export default {
                 .then(resp => {
                   console.log(resp);
                   this.$store.dispatch('getScholarshipsAction', resp.data);
-                  console.log(this.scholarshipList);
-                  this.loading = false;
+                  //console.log(this.scholarshipList);
                 })
                 .catch(err => {
                   console.log(err);
                   this.error = true;
                 })
-                .finally(() => (this.loading = false));
+                .finally(() => (
+                  this.loading = false
+                  ));
+
+
              },
   methods: {
     pushRoute (routeName) {
       this.$router.push(routeName)
-    }
+    },
+              printThis(){
+        let array = this.$store.getters.getScholarshipList;
+        console.log('hello')
+      console.log(array.slice(0,6));
+          }
   }
 }
 </script>
