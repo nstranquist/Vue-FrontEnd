@@ -1,9 +1,10 @@
 <template>
-  <v-app-bar absolute app color="transparent" class="page-app-bar">
+<nav>
+  <v-app-bar  app color="transparent" class="page-app-bar">
+    <v-app-bar-nav-icon  dark icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
     <v-toolbar-title class="tertiary--text font-weight-light align-self-center">
-      <v-btn v-if="responsive" dark icon @click.stop="onClick">
-        <v-icon>mdi-view-list</v-icon>
-      </v-btn>
+
       {{ title }}
     </v-toolbar-title>
 
@@ -46,6 +47,8 @@
       </v-row>
     </v-toolbar-items>
   </v-app-bar>
+  <NavDrawer :drawer = "drawer"></NavDrawer>
+</nav>
 </template>
 
 <script>
@@ -53,6 +56,10 @@
 import { mapMutations } from "vuex";
 
 export default {
+  components: {
+        NavDrawer: () => import("@/components/NavDrawer"),
+
+  },
   data: () => ({
     notifications: [
       "You applied to a scholarship",
@@ -62,36 +69,10 @@ export default {
       "Hard-Coded Notifications are just meh"
     ],
     title: null,
-    responsive: false
+    drawer: false
   }),
 
-  watch: {
-    $route(val) {
-      this.title = val.name;
-    }
-  },
 
-  mounted() {
-    this.onResponsiveInverted();
-    window.addEventListener("resize", this.onResponsiveInverted);
-  },
-  beforeDestroy() {
-    window.removeEventListener("resize", this.onResponsiveInverted);
-  },
-
-  methods: {
-    ...mapMutations("app", ["setDrawer", "toggleDrawer"]),
-    onClick() {
-      this.setDrawer(!this.$store.state.app.drawer);
-    },
-    onResponsiveInverted() {
-      if (window.innerWidth < 991) {
-        this.responsive = true;
-      } else {
-        this.responsive = false;
-      }
-    }
-  }
 };
 </script>
 

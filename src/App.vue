@@ -1,10 +1,10 @@
 <template>
   <!-- Put this into our UserProfile View -->
-  <v-app>
-    <NavDrawer></NavDrawer>
-    <AppBar></AppBar>
+  <v-app color="primary">
+    <!-- <AppBar v-show="displayNav"></AppBar> -->
     <ContentView></ContentView>
-    <Footer></Footer>
+    <!-- <Footer></Footer> -->
+    <BottomNav></BottomNav>
   </v-app>
 </template>
 
@@ -13,13 +13,15 @@ import * as axios from "axios";
 
 export default {
   components: {
-    NavDrawer: () => import("@/components/NavDrawer"),
-    Footer: () => import("@/components/Footer"),
+    // NavDrawer: () => import("@/components/NavDrawer"),
+    // Footer: () => import("@/components/Footer"),
     AppBar: () => import("@/components/AppBar"),
-    ContentView: () => import("@/components/ContentView")
+    ContentView: () => import("@/components/ContentView"),
+    BottomNav: () => import("@/components/BottomNav")
   },
   data() {
     return {
+      displayNav: false,
       loading: true,
       items: [
         { route: "/", title: "Dashboard", icon: "dashboard" },
@@ -30,45 +32,45 @@ export default {
       ]
     };
   },
-  created() {
-    axios
-      .get("https://us-central1-edurain.cloudfunctions.net/api/scholarships")
-      .then(resp => {
-        console.log(resp);
-        this.$store.dispatch("getScholarshipsAction", resp.data);
-        console.log(this.scholarshipList);
-        this.loading = false;
-      })
-      .catch(err => {
-        console.log(err);
-        this.error = true;
-      })
-      .finally(() => (this.loading = false));
-  },
-  created() {
-    axios
-      .get("https://us-central1-edurain.cloudfunctions.net/api/scholarships")
-      .then(resp => {
-        console.log(resp);
-        this.$store.dispatch("getScholarshipsAction", resp.data);
-        //console.log(this.scholarshipList);
-      })
-      .catch(err => {
-        console.log(err);
-        this.error = true;
-      })
-      .finally(() => (this.loading = false));
-  },
-  methods: {
-    pushRoute(routeName) {
-      this.$router.push(routeName);
-    },
-    printThis() {
-      let array = this.$store.getters.getScholarshipList;
-      console.log("hello");
-      console.log(array.slice(0, 6));
-    }
-  }
+  // created() {
+  //   axios
+  //     .get("https://us-central1-edurain.cloudfunctions.net/api/scholarships")
+  //     .then(resp => {
+  //       console.log(resp);
+  //       this.$store.dispatch("getScholarshipsAction", resp.data);
+  //       console.log(this.scholarshipList);
+  //       this.loading = false;
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //       this.error = true;
+  //     })
+  //     .finally(() => (this.loading = false));
+  // },
+  // created() {
+  //   axios
+  //     .get("https://us-central1-edurain.cloudfunctions.net/api/scholarships")
+  //     .then(resp => {
+  //       console.log(resp);
+  //       this.$store.dispatch("getScholarshipsAction", resp.data);
+  //       //console.log(this.scholarshipList);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //       this.error = true;
+  //     })
+  //     .finally(() => (this.loading = false));
+  // },
+  // methods: {
+  //   pushRoute(routeName) {
+  //     this.$router.push(routeName);
+  //   },
+  //   printThis() {
+  //     let array = this.$store.getters.getScholarshipList;
+  //     console.log("hello");
+  //     console.log(array.slice(0, 6));
+  //   }
+  // }
 };
 </script>
 

@@ -7,6 +7,7 @@ import Profile from './views/Profile.vue'
 import Schools from './views/Schools.vue'
 import Scholarships from './views/Scholarships.vue'
 import ScholarshipDetail from './views/ScholarshipDetail.vue'
+import MainPage from './views/MainPage.vue'
 import Templates from './views/Templates.vue'
 import TemplateItem from './views/TemplateItem.vue'
 import Housing from './views/Housing.vue'
@@ -42,6 +43,11 @@ let router = new Router({
       name: 'Dashboard',
       component: Dashboard,
       //meta: { auth: true }
+    },
+    {
+      path: '/home',
+      name: 'MainPage',
+      component: MainPage
     },
     {
       path: '/profile',

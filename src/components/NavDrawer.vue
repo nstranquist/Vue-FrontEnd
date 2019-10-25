@@ -5,10 +5,10 @@
     color="deep-purple accent-4"
     dark
     floating
-    permanent
     mobile-break-point="991"
     persistent
     width="260"
+    v-model="drawer"
   >
     <template v-slot:img="attrs">
       <v-img v-bind="attrs" gradient="to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)" />
@@ -63,7 +63,8 @@ export default {
     opened: {
       type: Boolean,
       default: false
-    }
+    },
+    drawer: Boolean
   },
   data: () => ({
     links: [
