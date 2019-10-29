@@ -7,7 +7,7 @@ const state = {
     citizenship: '',
     heritage: '',
     religion: '',
-    majors: '',
+    majors: [],
     career: '',
     honors: '',
     education: '',

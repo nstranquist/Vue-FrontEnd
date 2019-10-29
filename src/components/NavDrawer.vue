@@ -102,11 +102,17 @@ export default {
         icon: "mdi-book-open-page-variant",
         text: "Schools"
       },
+         {
+        route: "/favorites",
+        icon: "star",
+        text: "My Favorites"
+      },
       {
         route: "/settings",
         icon: "settings",
         text: "Settings"
-      }
+      },
+
     ]
   }),
 

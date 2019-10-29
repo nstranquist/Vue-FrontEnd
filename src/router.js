@@ -15,6 +15,7 @@ import Settings from './views/Settings.vue'
 import Upgrade from './views/Upgrade.vue'
 import SignIn from './views/SignIn.vue'
 import Register from './views/Register.vue'
+import MyFavorites from './views/MyFavorites.vue'
 
 Vue.use(Router)
 
@@ -93,6 +94,11 @@ let router = new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       // component: () => import('./views/About.vue')
+    },
+    {
+      path: '/favorites',
+      name: 'My Favorites',
+      component: MyFavorites
     },
     {
       path: '/upgrade',

@@ -5,6 +5,7 @@ import * as firebase from 'firebase'
 import accountInformation from './modules/accountInfo'
 import profile from './modules/profile'
 import scholarships from './modules/scholarships'
+import myFavorites from './modules/myFavorites'
 
 Vue.use(Vuex)
 
@@ -25,6 +26,7 @@ export const store = new Vuex.Store({
   modules: {
     accountInformation,
     profile,
-    scholarships
+    scholarships,
+    myFavorites
   }
 })

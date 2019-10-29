@@ -20,7 +20,8 @@ export default {
   },
   data() {
     return {
-      loading: true,
+      loading: false,
+      dataLoaded:false,
       items: [
         { route: "/", title: "Dashboard", icon: "dashboard" },
         { route: "/profile", title: "Profile", icon: "account_box" },
@@ -31,33 +32,24 @@ export default {
     };
   },
   created() {
-    axios
-      .get("https://us-central1-edurain.cloudfunctions.net/api/scholarships")
-      .then(resp => {
-        console.log(resp);
-        this.$store.dispatch("getScholarshipsAction", resp.data);
-        console.log(this.scholarshipList);
-        this.loading = false;
-      })
-      .catch(err => {
-        console.log(err);
-        this.error = true;
-      })
-      .finally(() => (this.loading = false));
-  },
-  created() {
-    axios
-      .get("https://us-central1-edurain.cloudfunctions.net/api/scholarships")
-      .then(resp => {
-        console.log(resp);
-        this.$store.dispatch("getScholarshipsAction", resp.data);
-        //console.log(this.scholarshipList);
-      })
-      .catch(err => {
-        console.log(err);
-        this.error = true;
-      })
-      .finally(() => (this.loading = false));
+    // if(!this.dataLoaded) {
+    //       axios.get("https://us-central1-edurain.cloudfunctions.net/api/scholarships")
+    //             .then(resp => {
+    //               console.log(resp);
+    //               this.$store.dispatch('getScholarshipsAction', resp.data);
+    //               console.log(this.scholarshipList);
+    //             })
+    //             .catch(err => {
+    //               console.log(err);
+    //               this.error = true;
+    //             })
+    //             .finally(() =>{
+    //               setTimeout(() => {
+    //                  this.loading = false;
+    //                   this.dataLoaded=true;
+    //               }, 25000);
+    //             });
+    //   }
   },
   methods: {
     pushRoute(routeName) {

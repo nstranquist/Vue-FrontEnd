@@ -14,7 +14,7 @@
           </ul>
         </v-card> -->
         <v-card>
-          <v-data-table  :loading="loading" :headers="headers" :items="scholarshipList" item-key="id"  @click:row="toggleRoute">
+          <v-data-table   :headers="headers" :items="scholarshipList" item-key="id"  @click:row="toggleRoute">
           </v-data-table>
         </v-card>
       </v-col>
@@ -32,18 +32,7 @@ export default {
   scholarships: '',
   results: [],
       created(){
-       axios.get("https://us-central1-edurain.cloudfunctions.net/api/scholarships")
-                .then(resp => {
-                  console.log(resp);
-                  this.$store.dispatch('getScholarshipsAction', resp.data);
-                  console.log(this.scholarshipList);
-                  this.loading = false;
-                })
-                .catch(err => {
-                  console.log(err);
-                  this.error = true;
-                })
-                .finally(() => (this.loading = false));
+
              },
   computed:
     mapState({
@@ -61,6 +50,7 @@ export default {
   },
   data: () => ({
       loading: true,
+       dataLoaded: false,
     headers: [
       {
         sortable: false,
@@ -87,7 +77,7 @@ export default {
         text: "Deadline",
         value: "deadline"
       }
-    ]
+    ],
   })
 }
 </script>

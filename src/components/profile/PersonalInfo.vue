@@ -72,6 +72,7 @@
                     <v-col cols="12" md="4">
                    <v-select
                       :items="majors"
+                      multiple
                       label="Possible Majors" v-model="personalInfo.major"
                     ></v-select>
                   </v-col>
@@ -145,7 +146,7 @@
             citizenship: '',
             heritage: '',
             religion: '',
-            major: '',
+            major: [],
             career: '',
             honors: '',
             education: '',

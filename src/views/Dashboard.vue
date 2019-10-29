@@ -4,8 +4,7 @@
       <v-col cols="12" md="7">
          <v-card color="yellow darken-3">
           <v-container class="completed-container">
-            <h2 v-show="!profile"  class="content-section-header">Scholarships Approaching Deadline</h2>
-            <h2  v-show="profile" class="content-section-header">Matched Scholorships</h2>
+            <h2  class="content-section-header">Matched Scholorships</h2>
             <v-card>
               <div v-show="loading" class="text-center">
                 <v-progress-circular class="spinner"
@@ -13,14 +12,16 @@
                   color="primary"
                 ></v-progress-circular>
               </div>
-              <v-list v-show="!loading" dense class="application-list-container">
-                <v-list-item v-for="(item) in approachingDeadline" :key="item.id" >
-                  <v-list-item-title v-text="item.name" class="list-item" ></v-list-item-title>
-                  <v-card-actions>
+             <v-list v-show="!loading" dense class="application-list-container" >
+              <v-list-item-group   multiple >
+                <v-list-item v-for="(item) in matchedScholarships" :key="item.id"  @click="addMyFaveScholarship(item)" color="indigo">
+                  <v-list-item-title v-text="item.text" class="list-item" ></v-list-item-title>
                   <v-spacer />
-                  <v-icon :style="{color: changeColor}" @click="myFavorite(item)">star</v-icon>
-                  </v-card-actions>
-                </v-list-item>
+                  <v-list-item-icon>
+                    <v-icon >star</v-icon>
+                  </v-list-item-icon>
+                  </v-list-item>
+                </v-list-item-group>
               </v-list>
             </v-card>
           </v-container>
@@ -42,7 +43,7 @@
             <h2 class="content-section-header">Recent Activity</h2>
             <v-card>
               <v-list dense class="application-list-container">
-                <v-list-item v-for="(item) in recentActivity" :key="item.id" to="/templates/0">
+                <v-list-item v-for="(item) in recentActivity" :key="item.id" :to="item.link">
                   <v-list-item-title v-text="item.text" class="list-item"></v-list-item-title>
                    <v-spacer />
                   <v-icon class="list-icon" color = "deep-purple darken-4">{{ item.icon }}</v-icon>
@@ -76,11 +77,19 @@
             <h3 class="content-section-header">Off-Campus Housing</h3>
             <v-card>
               <v-list v-show="!loading" dense class="application-list-container">
-                <v-list-item v-for="(item) in availableHousing" :key="item.id" to="/templates/0">
-                  <v-list-item-title v-text="item.text" class="list-item"></v-list-item-title>
-                  <v-spacer />
-                  <v-icon class="list-icon">home</v-icon>
-                </v-list-item>
+                <v-list-item-group
+                 multiple
+                  color="indigo">
+                  <v-list-item
+                   v-for="(item, i) in availableHousing"
+                  :key="i"
+                  @click="addMyFaveHousing(item)">
+                  <v-list-item-title v-text="item.text" class="list-item" ></v-list-item-title>
+                   <v-list-item-icon>
+                    <v-icon >home</v-icon>
+                  </v-list-item-icon>
+                  </v-list-item>
+                </v-list-item-group>
               </v-list>
             </v-card>
           </v-container>
@@ -128,34 +137,24 @@
 export default {
   name: 'dashboard',
   data: () => ({
-    loading: true,
+    loading: false,
     approachDeadline: 'Approaching Deadlines',
     matched: 'Matched Scholarships',
     completeSurve: 'Get Matched to Scholorships By Completeing Profile Survey',
-    profile: false,
+    profile: true,
     dialog: false,
-    myFave: [],
-    selected: false,
-    changeColor: '',
-    date: 1,
+   selected: false,
     dates: [
       { text: 'Sep. 12' },
       { text: 'Sep. 18' },
       { text: 'Oct. 9' },
       { text: 'Nov. 21' }
     ],
-    matchedScholarships: 1,
-    matchedScholarships: [
-      { route: '/scholarships/1', text: 'Washington Universtiy' },
-      { route: '/scholarships/2', text: 'Saint Louis Universtiy' },
-      { route: '/scholarships/3', text: 'University of Missoui - St. Louis' },
-      { route: '/scholarships/4', text: 'Rotary Club Scholarship' }
-    ],
     activity: [
-      { text: 'My Favorites', icon: 'star' },
-      { text: 'Scholarship Applications', icon: 'mdi-clipboard-text' },
-      { text: 'Housing Applications', icon: 'mdi-clipboard-text-outline' },
-      { text: 'Profile', icon: 'account_box' },
+      { text: 'My Favorites', icon: 'star', link: '/favorites' },
+      { text: 'Scholarship Applications', icon: 'mdi-clipboard-text', link:'/' },
+      { text: 'Housing Applications', icon: 'mdi-clipboard-text-outline', link:'/'},
+      { text: 'Profile', icon: 'account_box', link:'/profile' },
       { text: 'Item 5' },
     ],
     school: [
@@ -166,21 +165,35 @@ export default {
        { name: 'Southeast Missouri State', location: 'Cape Girardeau, Mo'}
     ],
     offCampusHousing: [
-      { text: 'House 1' },
-      { text: 'House 2' },
-      { text: 'House 3' },
-      { text: 'House 4' },
-      { text: 'House 5' }
+      { text: 'House 1', id:1},
+      { text: 'House 2', id:2 },
+      { text: 'House 3',  id:3},
+      { text: 'House 4', id:4},
+      { text: 'House 5', id:5}
+    ],
+    scholarshipsList: [
+      { text: 'Scholarship 1', id:1},
+      { text: 'Scholarship 2', id:2 },
+      { text: 'Scholarship 3',  id:3},
+      { text: 'Scholarship 4', id:4},
+      { text: 'Scholarship 5', id:5},
+      { text: 'Scholarship 6', id:6},
+      { text: 'Scholarship 7', id:7},
+      { text: 'Scholarship 8', id:8},
+      { text: 'Scholarship 9', id:9}
+
     ]
   }),
   computed: {
-    approachingDeadline: function () {
-      let array = this.$store.getters.getScholarshipList;
-      // console.log(array);
+    matchedScholarships: function () {
+      // let array = this.$store.getters.getScholarshipList;
+      let array = this.scholarshipsList;
+
       const firstFive = array.slice(0,5);
       return firstFive;
     },
     availableHousing: function () {
+
       return this.offCampusHousing;
     },
      recentActivity: function () {
@@ -189,46 +202,58 @@ export default {
      schools: function () {
       return this.school;
     },
+
   },
   methods: {
-    completedProfileSurvey(){
-      console.log('completed profile survey method called')
-     if(!this.profile){
-       setTimeout(() => {
-        this.dialog = true;
-      }, 20000);
-  }
-     },
-         createProfile(){
+  createProfile(){
       this.$router.push(`/profile`)
     },
-    myFavorite(value){
-      console.log(value)
-      if(this.myFave.length === 1 && this.myFave.includes(value)){
-        this.myFave = [];
-        this.changeColor = '';
-         console.log('=====1');
-             return;
-      } else if(this.myFave.includes(value) && this.myFave.length > 1){
-         console.log('=====2');
-         this.changeColor = '';
-          this.myFave = this.myFave.filter(m => m!== value);
-          console.log(this.myFave)
-          return;
-      }
-      this.myFave.push(value);
-      this.changeColor ="yellow";
-      console.log('=====3');
-      console.log(this.myFave);
-      return this.myFave;
-    }
+    addMyFaveHousing(value){
+      let myFaveHousing = this.$store.state.myFaveHousing;
 
+      if(this.myFaveHousing.length == 0 || !this.myFaveHousing.includes(value)){
+        this.myFaveHousing.push(value);
+         this.$store.dispatch('updateMyFaveHousingAction', this.myFaveHousing)
+        console.log('added housing: ' + value)
+      }
+      else{
+        let index = this.myFaveHousing.indexOf(value)
+        this.myFaveHousing.splice(index,1);
+        this.$store.dispatch('updateMyFaveHousingAction', this.myFaveHousing);
+        console.log('removed housing: ' + value)
+      }
+      console.log(this.myFaveHousing);
+      },
+
+
+ addMyFaveScholarship(value){
+
+      let myFaveScholarships =  this.$store.state.myFavorites.myFaveScholarships;
+
+      if (myFaveScholarships.filter(s=> s === value).length > 0) {
+        let index = myFaveScholarships.indexOf(value);
+
+        myFaveScholarships.splice(index,1);
+        console.log('Found at index: ' + index);
+        const updatedMyFaveScholarships = myFaveScholarships.filter( s =>  s !== value);
+
+        this.$store.dispatch('updateMyFaveScholarshipsAction', updatedMyFaveScholarships)
+        myFaveScholarships =  this.$store.state.myFavorites.myFaveScholarships;
+
+        console.log('removed scholarship: ' + value.text + 'id: ' + value.id)
+}else{
+        myFaveScholarships.push(value);
+        this.$store.dispatch('updateMyFaveScholarshipsAction', this.myFaveScholarships);
+        myFaveScholarships =  this.$store.state.myFavorites.myFaveScholarships;
+        console.log('added scholarship: ' + value.text + ' id: ' + value.id)
+}
+      console.log('number of objects:' + myFaveScholarships.length);
+    }
   },
   created(){
     setTimeout(() => {
-            this.loading =false;
-          }, 2000);
-     this.completedProfileSurvey()
+            this.loading = false;
+          }, 6000);
       },
 }
 </script>
