@@ -13,7 +13,8 @@ import Housing from './views/Housing.vue'
 import HousingDetail from './views/HousingDetail.vue'
 import Settings from './views/Settings.vue'
 import Upgrade from './views/Upgrade.vue'
-import SignIn from './views/SignIn.vue'
+import SignIn from './views/auth/SignIn.vue'
+import SignUp from './views/auth/SignUp.vue'
 import Register from './views/Register.vue'
 
 Vue.use(Router)
@@ -30,6 +31,12 @@ let router = new Router({
       path: '/login',
       name: 'LogIn',
       component: SignIn,
+      //meta: { guest: true }
+    },
+    {
+      path: '/signup',
+      name: 'SignUp',
+      component: SignUp,
       //meta: { guest: true }
     },
     {

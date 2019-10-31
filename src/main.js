@@ -14,20 +14,22 @@ Vue.config.productionTip = false
 
 // init firebase
 const config = {
-  apiKey: "AIzaSyAlctduxH2jJOZNEdoyoUoN96GiX_j3BCs",
-  authDomain: "edurain.firebaseapp.com",
-  databaseURL: "https://edurain.firebaseio.com",
-  projectId: "edurain",
-  storageBucket: "edurain.appspot.com",
-  messagingSenderId: "121691707714",
-  appId: "1:121691707714:web:c1ff88636e8b24476410db",
-  measurementId: "G-CH3JB3FFW8"
-};
-firebase.initializeApp(config)
+  apiKey: 'AIzaSyAlctduxH2jJOZNEdoyoUoN96GiX_j3BCs',
+  authDomain: 'edurain.firebaseapp.com',
+  databaseURL: 'https://edurain.firebaseio.com',
+  projectId: 'edurain',
+  storageBucket: 'edurain.appspot.com',
+  messagingSenderId: '121691707714',
+  appId: '1:121691707714:web:c1ff88636e8b24476410db',
+  measurementId: 'G-CH3JB3FFW8'
+}
 
 new Vue({
   vuetify,
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  created () {
+    firebase.initializeApp(config)
+  }
 }).$mount('#app')
