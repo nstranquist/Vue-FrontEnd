@@ -12,52 +12,52 @@ const mutations = {
 
 const actions = {
   async signUpUser ({ commit }, payload) {
-    commit('setUser', payload);
-    // firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
-    //   .then(
-    //     user => {
-    //       const newUser = {
-    //         id: user.uid,
-    //         scholarshipSurvey: {},
-    //         myFavorites: [],
-    //         firstName: payload.firstName,
-    //         lastName: payload.lastName,
-    //         city: payload.city,
-    //         state: payload.usState,
-    //         zipCode: payload.zipCode
-    //       }
-    //       commit('setUser', newUser);
-    //     }
-    //   )
-    //   .catch(
-    //     error => {
-    //       console.log(error);
-    //     }
-    //   )
+
+    firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
+      .then(
+        user => {
+          const newUser = {
+            id: user.uid,
+            scholarshipSurvey: {},
+            myFavorites: [],
+            firstName: payload.firstName,
+            lastName: payload.lastName,
+            city: payload.city,
+            state: payload.usState,
+            zipCode: payload.zipCode
+          }
+          commit('setUser', newUser);
+        }
+      )
+      .catch(
+        error => {
+          console.log(error);
+        }
+      )
   },
   async signUserIn ({ commit }, payload) {
-    commit('setUser', payload);
-    // firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
-    //   .then(
-    //     user => {
-    //       const newUser = {
-    //         id: user.uid,
-    //         scholarshipSurvey: {},
-    //         myFavorites: [],
-    //         firstName: payload.firstName,
-    //         lastName: payload.lastName,
-    //         city: payload.city,
-    //         state: payload.usState,
-    //         zipCode: payload.zipCode
-    //       }
-    //       commit('setUser', newUser);
-    //     }
-    //   )
-    //   .catch(
-    //     error => {
-    //       console.log(error);
-    //     }
-      // )
+    // commit('setUser', payload);
+    firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
+      .then(
+        user => {
+          const newUser = {
+            id: user.uid,
+            scholarshipSurvey: {},
+            myFavorites: [],
+            firstName: payload.firstName,
+            lastName: payload.lastName,
+            city: payload.city,
+            state: payload.usState,
+            zipCode: payload.zipCode
+          }
+          commit('setUser', newUser);
+        }
+      )
+      .catch(
+        error => {
+          console.log(error);
+        }
+      )
   }
 }
 
