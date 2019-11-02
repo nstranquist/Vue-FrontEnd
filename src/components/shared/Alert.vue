@@ -1,8 +1,7 @@
 <template>
  <v-alert
-       color="error"  dismissible @input="onClose"
-    >
-    {{text}}}
+       color="error"  dismissible @input="onClose">
+    {{text}}
     </v-alert>
 </template>
 

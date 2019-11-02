@@ -94,7 +94,7 @@
 </template>
 
 <script>
-import data, {gpa} from '../../data'
+import data from '../../data'
 import { profileSurveyMixins } from '../../mixins/profileSurveyMixins.js'
 export default {
   mixins: [profileSurveyMixins],

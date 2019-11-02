@@ -127,13 +127,14 @@ export default {
   },
   watch: {
     user(value){
-      const hasFirstName = value.firstName !==null &&value.firstName !== undefined;
-      const hasLastName = value.lastName !==null && value.lastName !==undefined
+      const hasFirstName = value.firstName !==null &&value.firstName !== undefined && value.firstName !=="" ;
+      const hasLastName = value.lastName !==null && value.lastName !==undefined && value.lastName !=="";
       if( hasFirstName && hasLastName){
        this.userName =  value.firstName + ' ' + value.lastName;
       }
       return this.username;
-  }
+  },
+
   },
   methods: {
     ...mapMutations('app', ['setDrawer', 'toggleDrawer'])

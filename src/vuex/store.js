@@ -1,3 +1,4 @@
+/* eslint-disable semi */
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as firebase from 'firebase'
@@ -19,7 +20,8 @@ export const store = new Vuex.Store({
         amount: 4000
       }
     ],
-    loading: false
+    loading: false,
+    error: null
   },
   modules: {
     accountInformation,
@@ -27,4 +29,5 @@ export const store = new Vuex.Store({
     scholarships,
     user
   }
+
 })

@@ -7,14 +7,19 @@
             <v-card class="elevation-12">
               <v-toolbar color="primary" dark flat>
                 <v-toolbar-title>Sign Up Form</v-toolbar-title>
-              </v-toolbar>
+                </v-toolbar>
+               <v-row v-if="error">
+                <v-col xs12 sm6 offset-sm3 >
+                  <app-alert @dismissed="onDismissed" :text="error"></app-alert>
+                </v-col>
+              </v-row>
               <v-card-text>
                 <form >
                   <v-text-field
                     label="First name"
                     v-model="firstName"
                     prepend-icon="mdi-account-outline"
-                    type="text" required>
+                    type="text" >
                    </v-text-field>
                   <v-text-field
                     label="Last Name"
@@ -26,21 +31,21 @@
                     label="City"
                     v-model="city"
                     prepend-icon="mdi-home-city-outline"
-                    type="text" required>
+                    type="text" >
                    </v-text-field>
                     <v-text-field
                     label="State"
                     v-model="usState"
                     prepend-icon="mdi-city"
                     type="text"
-                     required>
+                     >
                    </v-text-field>
                    <v-text-field
                     label="Zip Code"
                     v-model="zipCode"
                     prepend-icon="mdi-crosshairs"
                     type="text"
-                     required>
+                     >
                    </v-text-field>
                   <v-text-field
                     id="password"
@@ -48,7 +53,7 @@
                     v-model="password"
                     prepend-icon="lock"
                     type="password"
-                    required
+
                   ></v-text-field>
                    <v-text-field
                     id="confirmPassword"
@@ -64,13 +69,19 @@
                     v-model="email"
                     prepend-icon="email"
                     type="email"
-                    required
                   ></v-text-field>
                 </form>
               </v-card-text>
               <v-card-actions>
                 <div class="flex-grow-1"></div>
-                <v-btn color="primary" @click="onSignUp">Sign Up</v-btn>
+                <v-btn color="primary" @click="onSignUp" :disabled="loading" :loading="loading">
+                  Sign Up
+                  <template v-slot:loader>
+                    <span class="custom-loader">
+                      <v-icon light>cached</v-icon>
+                    </span>
+                  </template>
+                  </v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -114,6 +125,12 @@ export default {
       console.log("userComputed: ")
       console.log(this.$store.getters.getUser)
       return this.$store.getters.getUser;
+    },
+    error() {
+          return this.$store.getters.error;
+    },
+    loading(){
+      return this.$store.getters.loading;
     }
   },
   watch: {
@@ -121,11 +138,19 @@ export default {
       if(value !== null || value !== undefined){
         this.$router.push('/');
       }
-    }
+    },
+           loader () {
+        const l = this.loader
+        this[l] = !this[l]
+
+        setTimeout(() => (this[l] = false), 3000)
+
+        this.loader = null
+      }
+    
   },
   methods:{
     onSignUp(){
-
       this.newUser.email = this.email;
       this.newUser.password = this.password;
       this.newUser.firstName = this.firstName;
@@ -134,6 +159,10 @@ export default {
       this.newUser.zipCode = this.zipCode;
       this.newUser.city = this.city;
     this.$store.dispatch('signUpUser', this.newUser);
+    },
+    onDismissed(){
+      console.log('Dismissed Alert');
+      this.$store.dispatch('clearError');
     }
   }
 }

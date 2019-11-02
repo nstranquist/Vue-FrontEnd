@@ -8,9 +8,11 @@ import { store } from './vuex/store'
 // style imports
 import './css/form.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
-
+import AlertCmp from './components/shared/Alert.vue'
 import './registerServiceWorker'
+
 Vue.config.productionTip = false
+Vue.component('app-alert', AlertCmp)
 
 // init firebase
 const config = {
