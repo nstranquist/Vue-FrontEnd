@@ -132,7 +132,7 @@ export default {
     approachDeadline: 'Approaching Deadlines',
     matched: 'Matched Scholarships',
     completeSurve: 'Get Matched to Scholorships By Completeing Profile Survey',
-    profile: false,
+    profile: true,
     dialog: false,
     myFave: [],
     selected: false,

@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import data, {military} from '../../data'
+import data  from '../../data'
 import { profileSurveyMixins } from '../../mixins/profileSurveyMixins.js'
 
 export default {

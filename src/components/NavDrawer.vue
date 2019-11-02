@@ -19,7 +19,7 @@
         <v-img src="/img/logo.png" height="34" contain />
       </v-list-item-avatar>
 
-      <v-list-item-title class="title">Bryon P</v-list-item-title>
+      <v-list-item-title class="title">{{userName}}</v-list-item-title>
     </v-list-item>
 
     <v-divider class="mx-3 mb-3" />
@@ -40,7 +40,6 @@
         <v-list-item-title v-text="link.text" />
       </v-list-item>
     </v-list>
-
     <template v-slot:append>
       <v-list nav>
         <v-list-item to="/upgrade">
@@ -107,9 +106,9 @@ export default {
         icon: "settings",
         text: "Settings"
       }
-    ]
+    ],
+    userName:'Bryon P'
   }),
-
   computed: {
     ...mapState('app', ['image', 'color']),
     inputValue: {
@@ -118,10 +117,25 @@ export default {
       },
       set (val) {
         this.setDrawer(val)
-      }
+      },
+    },
+   user (){
+      console.log("userComputed: ")
+      console.log(this.$store.getters.getUser)
+      return this.$store.getters.getUser;
     }
   },
+  watch: {
+    user(value){
+      const hasFirstName = value.firstName !==null &&value.firstName !== undefined && value.firstName !=="" ;
+      const hasLastName = value.lastName !==null && value.lastName !==undefined && value.lastName !=="";
+      if( hasFirstName && hasLastName){
+       this.userName =  value.firstName + ' ' + value.lastName;
+      }
+      return this.username;
+  },
 
+  },
   methods: {
     ...mapMutations('app', ['setDrawer', 'toggleDrawer'])
   }

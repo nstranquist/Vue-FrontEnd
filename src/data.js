@@ -229,9 +229,10 @@ const majors = [
 ]
 const iAmA = [
   'Student',
-  'Parnet'
+  'Parent'
 ]
-const data = {
+
+export default {
   majors,
   genders,
   educationalExperiences,
@@ -239,11 +240,6 @@ const data = {
   currentSchoolYear,
   yearScholarshipNeeded,
   citizenship,
-  iAmA
-}
-
-export {
-  data as default,
+  iAmA,
   military,
-  gpa
-}
+  gpa }

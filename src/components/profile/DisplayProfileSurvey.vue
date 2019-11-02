@@ -19,7 +19,7 @@
 
           </v-col>
           <v-col cols="12" class="text-right">
-            <v-btn class="edit-btn" @click="updatePersonalInfoSurvey" v-show="displayEdit">Edit</v-btn>
+            <v-btn class="edit-btn" @click="updatePersonalInfoSurvey"
           </v-col>
         </v-container>
     </v-card>
@@ -36,7 +36,7 @@
           <p>Current/Previous Employer: <span>{{studentEmployer}}</span></p>
                   </v-col>
       <v-col cols="12" class="text-right">
-        <v-btn class="edit-btn" v-show="displayEdit" @click="updateStudentActivitiesSurvey">Edit</v-btn>
+        <v-btn class="edit-btn" @click="updateStudentActivitiesSurvey">Edit</v-btn>
       </v-col>
       </v-container>
       </v-card>
@@ -56,7 +56,7 @@
                 <p>Previous Funding Received:<span>{{prevFundingReceived}}</span></p>
           </v-col>
           <v-col cols="12" class="text-right">
-            <v-btn class="edit-btn" v-show="displayEdit" @click="updateEducationSurvey">Edit</v-btn>
+            <v-btn class="edit-btn" @click="updateEducationSurvey">Edit</v-btn>
           </v-col>
           </v-container>
 </v-card>
@@ -71,7 +71,7 @@
               <p>Parent Occupation: <span>{{occupation}}</span></p>
           </v-col>
           <v-col cols="12" class="text-right">
-            <v-btn class="edit-btn"  v-show="displayEdit" @click="updateParentInfoSurvey" >Edit</v-btn>
+            <v-btn class="edit-btn"  @click="updateParentInfoSurvey" >Edit</v-btn>
           </v-col>
     </v-container>
 </v-card>
@@ -125,10 +125,17 @@ export default {
   }),
   methods: {
     submit () {
-      // update method
-      console.log('submit')
-      this.displayEdit = false
+      const personalInfo = this.$store.getters.getPersonalInfo;
+      const parentInfo = this.$store.getters.getParentInfo;
+      const education = this.$store.getters.getEducation;
+      const studentActivities = this.$store.getters.getStudentActivities;
+       console.log('submit');
+
+      const profileSurvey = { personalInfo, parentInfo, education, studentActivities
+      }
+      this.$store.dispatch('submitProfileSurvey', profileSurvey)
       this.$emit('submit')
+
     },
     updateEducationSurvey () {
       console.log('updating education')
