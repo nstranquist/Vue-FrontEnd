@@ -43,6 +43,9 @@
         <v-btn to="/profile" icon>
           <v-icon color="tertiary">account_circle</v-icon>
         </v-btn>
+         <v-btn icon to="/login" v-if="userIsAuthenticated" @click="onLogout">
+          <v-icon color="tertiary">mdi-exit-to-app</v-icon>
+        </v-btn>
       </v-row>
     </v-toolbar-items>
   </v-app-bar>
@@ -64,7 +67,12 @@ export default {
     title: null,
     responsive: false
   }),
-
+  computed: {
+     userIsAuthenticated() {
+      const authUser = this.$store.getters.getUser;
+      return authUser !== null && authUser !== undefined;
+    }
+  },
   watch: {
     $route(val) {
       this.title = val.name;
@@ -84,6 +92,10 @@ export default {
     onClick() {
       this.setDrawer(!this.$store.state.app.drawer);
     },
+    onLogout () {
+      this.$store.dispatch('logout');
+    },
+
     onResponsiveInverted() {
       if (window.innerWidth < 991) {
         this.responsive = true;
