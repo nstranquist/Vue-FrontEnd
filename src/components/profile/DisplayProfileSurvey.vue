@@ -125,15 +125,16 @@ export default {
   }),
   methods: {
     submit () {
+      console.log('submit');
       const personalInfo = this.$store.getters.getPersonalInfo;
       const parentInfo = this.$store.getters.getParentInfo;
       const education = this.$store.getters.getEducation;
       const studentActivities = this.$store.getters.getStudentActivities;
-       console.log('submit');
-
-      const profileSurvey = { personalInfo, parentInfo, education, studentActivities
+      const userId = this.$store.getters.getUser.id
+      const profileSurvey = { userId, personalInfo, parentInfo, education, studentActivities
       }
-      this.$store.dispatch('submitProfileSurvey', profileSurvey)
+
+      this.$store.dispatch('submitProfileSurvey', profileSurvey);
       this.$emit('submit')
 
     },

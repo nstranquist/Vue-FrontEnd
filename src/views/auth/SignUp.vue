@@ -135,7 +135,10 @@ export default {
   },
   watch: {
     user(value){
-      if(value !== null || value !== undefined){
+      console.log('*******************************')
+      console.log(value)
+      if(value.id !== null || value.id !== undefined){
+        console.log(value.id)
         this.$router.push('/');
       }
     },
@@ -147,7 +150,7 @@ export default {
 
         this.loader = null
       }
-    
+
   },
   methods:{
     onSignUp(){

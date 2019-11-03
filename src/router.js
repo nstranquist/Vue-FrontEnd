@@ -16,6 +16,7 @@ import Upgrade from './views/Upgrade.vue'
 import SignIn from './views/auth/SignIn.vue'
 import SignUp from './views/auth/SignUp.vue'
 import Register from './views/Register.vue'
+import AuthGuard from './auth-guard'
 
 Vue.use(Router)
 
@@ -48,54 +49,64 @@ let router = new Router({
       path: '/',
       name: 'Dashboard',
       component: Dashboard,
+      beforeEnter: AuthGuard
       //meta: { auth: true }
     },
     {
       path: '/profile',
       name: 'Profile',
-      component: Profile
+      component: Profile,
+      beforeEnter: AuthGuard
     },
     // add store objects here to /profile routes
     {
       path: '/schools',
       name: 'Schools',
-      component: Schools
+      component: Schools,
+      beforeEnter: AuthGuard
     },
     {
       path: '/scholarships',
       name: 'Scholarships',
-      component: Scholarships
+      component: Scholarships,
+      beforeEnter: AuthGuard
     },
     {
       path: '/scholarships/:id',
       name: 'Scholarship Detail',
       component: ScholarshipDetail,
+      beforeEnter: AuthGuard,
       props: r => ({ id: parseInt(r.params.id) })
     },
     {
       path: '/templates',
       name: 'Templates',
-      component: Templates
+      component: Templates,
+      beforeEnter: AuthGuard
     },
     {
       path: '/templates/:id',
       name: 'Template Item',
-      component: TemplateItem
+      component: TemplateItem,
+      beforeEnter: AuthGuard
     },
     {
       path: '/housing',
       name: 'Housing',
-      component: Housing
+      component: Housing,
+      beforeEnter: AuthGuard
     },
     {
       path: '/housing/:id',
       name: 'Housing Detail',
-      component: HousingDetail
+      component: HousingDetail,
+      beforeEnter: AuthGuard
     },
     {
       path: '/settings',
       name: 'Settings',
-      component: Settings
+      component: Settings,
+      beforeEnter: AuthGuard
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
