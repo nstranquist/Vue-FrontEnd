@@ -1,3 +1,4 @@
+/* eslint-disable semi */
 import Vue from 'vue'
 import App from './App.vue'
 import * as firebase from 'firebase'
@@ -32,6 +33,14 @@ new Vue({
   store,
   render: h => h(App),
   created () {
-    firebase.initializeApp(config)
+    firebase.initializeApp(config);
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.$store.dispatch('autoSignIn', user);
+        let displayName = user.displayName;
+        let email = user.email;
+        let uid = user.uid;
+      }
+    })
   }
 }).$mount('#app')

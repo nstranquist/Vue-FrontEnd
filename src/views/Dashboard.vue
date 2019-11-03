@@ -225,11 +225,8 @@ export default {
 
   },
   created(){
-    setTimeout(() => {
-            this.loading =false;
-          }, 2000);
-     this.completedProfileSurvey()
-      },
+    this.loading = this.$store.getters.loadScholarships;
+}
 }
 </script>
 

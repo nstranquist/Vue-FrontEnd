@@ -6,6 +6,7 @@ const state = {
   authError: null,
   myFavorites: [],
   profileSurvey: {
+    userId: null,
     personalInfo: {
       iAmA: '',
       gender: '',
@@ -46,8 +47,7 @@ const state = {
       sports: '',
       perform: '',
       employer: ''
-    },
-    id: ''
+    }
   }
 }
 
@@ -68,7 +68,7 @@ const mutations = {
     Object.assign(state.profileSurvey, payload);
   },
   myFavorites (state, payload) {
-    state.myFavorites = payloade;
+    state.myFavorites = payload;
   },
   saveMyFavorites (state) {
     firebase.database().ref('myFavorites').push(this.state);
@@ -81,18 +81,12 @@ const actions = {
     commit('clearError');
     firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
       .then(
-        user => {
-          commit('setLoading', false);
+        resp => {
+          console.log(resp);
           const newUser = {
-            id: user.uid,
-            scholarshipSurvey: {},
-            myFavorites: [],
-            firstName: payload.firstName,
-            lastName: payload.lastName,
-            city: payload.city,
-            state: payload.usState,
-            zipCode: payload.zipCode
+            id: resp.user.uid
           }
+          commit('setLoading', false);
           commit('setUser', newUser);
         }
       )
@@ -108,21 +102,15 @@ const actions = {
     commit('setLoading', true);
     commit('clearError');
 
-    firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
+    firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
       .then(
-        user => {
-          this.$store.dispatch('setLoading', false);
+        resp => {
+          console.log(resp.user);
           const newUser = {
-            id: user.uid,
-            scholarshipSurvey: {},
-            myFavorites: [],
-            firstName: payload.firstName,
-            lastName: payload.lastName,
-            city: payload.city,
-            state: payload.usState,
-            zipCode: payload.zipCode
+            id: resp.user.uid
           }
           commit('setUser', newUser);
+          commit('setLoading', false);
         }
       )
       .catch(
@@ -133,11 +121,12 @@ const actions = {
       )
   },
   async submitProfileSurvey ({ commit }, payload) {
-    firebase.database().ref('profileSurvey').push(payload)
+    // should use db.collection(firestore) and not firebase
+    firebase.database().col('profileSurvey').push(payload)
       .then((data) => {
         console.log(data);
         const key = data.key;
-        commit('submitProfileSurvey', { ...payload, id: key });
+        commit('submitProfileSurvey', payload);
       })
       .catch((error) => {
         console.log(error);
@@ -150,6 +139,7 @@ const actions = {
     commit('saveMyFavorites');
   },
   loadMyFavorites ({ commit }) {
+    // should use db.collection(firestore) and not firebase
     firebase.database().ref('myFavorites').once('value')
       .then((data) => {
         const myFavorites = [];
@@ -161,15 +151,23 @@ const actions = {
           })
         }
         commit('myFavorites', myFavorites);
-
       })
       .catch(
         (error) => {
           console.log(error);
         })
   },
+  autoSignIn ({ commit }, payload) {
+    console.log('below is the uid')
+    console.log(payload.uid)
+    commit('setUser', { id: payload.uid, profileSurvey: [], myFavorites: [] })
+  },
   loading ({ commit }, payload) {
     commit('setLoading', payload);
+  },
+  logout ({ commit }) {
+    firebase.auth().signOut();
+    commit('setUser', null)
   },
   error ({ commit }) {
     commit('error')

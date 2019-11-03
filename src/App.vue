@@ -32,18 +32,11 @@ export default {
   },
 
   created() {
-    axios
-      .get("https://us-central1-edurain.cloudfunctions.net/api/scholarships")
-      .then(resp => {
-        console.log(resp);
-        this.$store.dispatch("getScholarshipsAction", resp.data);
-        //console.log(this.scholarshipList);
-      })
-      .catch(err => {
-        console.log(err);
-        this.error = true;
-      })
-      .finally(() => (this.loading = false));
+    const scholarshipList = this.$store.getters.getScholarshipList;
+    if(scholarshipList == null || scholarshipList == undefined){
+       this.$store.dispatch('getScholarships');
+    }
+
   },
   methods: {
     pushRoute(routeName) {
